@@ -4,6 +4,8 @@ title: About Us
 permalink: /about/
 ---
 
+<img src="{{site.baseurl}}/images/datapirates.png" width="1000" height="500"> 
+
 | Name      | Fun Fact | Role |
 | ----------- | ----------- |
 | Ananya | I am 15 years old, and was born in Patna, India. My hobbies are dancing, playing the piano, and robotics!| - |
