@@ -4,7 +4,7 @@ title: About Us
 permalink: /about/
 ---
 
-<img src="{{site.baseurl}}/images/datapirates.png" width="1000" height="500"> 
+<img src="{{site.baseurl}}/images/datapirates.png" width="750" height="750"> 
 
 | Name      | Fun Fact | Role |
 | ----------- | ----------- |
