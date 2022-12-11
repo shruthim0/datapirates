@@ -1,3 +1,7 @@
+# Ignore from local build
+settings.ini
+Gemfile.lock
+_posts/2022-11-18-Lessonplan.md
 *.swp
 ~*
 *~
@@ -8,6 +12,7 @@ _site
 *.xml
 vendor
 _notebooks/.ipynb_checkpoints
+
 # Local Netlify folder
 .netlify
 .tweet-cache
