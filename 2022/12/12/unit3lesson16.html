@@ -4,18 +4,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="twitter:card" content="summary_large_image" /><!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>Unit 3 Lesson 16</title>
+<title>Unit 3 Lesson 16, Simulations</title>
 <meta name="generator" content="Jekyll v4.1.1" />
-<meta property="og:title" content="Unit 3 Lesson 16" />
+<meta property="og:title" content="Unit 3 Lesson 16, Simulations" />
 <meta property="og:locale" content="en_US" />
 <link rel="canonical" href="https://shruthim0.github.io/datapirates/2022/12/12/unit3lesson16.html" />
 <meta property="og:url" content="https://shruthim0.github.io/datapirates/2022/12/12/unit3lesson16.html" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2022-12-12T00:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Unit 3 Lesson 16" />
+<meta property="twitter:title" content="Unit 3 Lesson 16, Simulations" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-12-12T00:00:00-06:00","datePublished":"2022-12-12T00:00:00-06:00","headline":"Unit 3 Lesson 16","mainEntityOfPage":{"@type":"WebPage","@id":"https://shruthim0.github.io/datapirates/2022/12/12/unit3lesson16.html"},"url":"https://shruthim0.github.io/datapirates/2022/12/12/unit3lesson16.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2022-12-12T00:00:00-06:00","datePublished":"2022-12-12T00:00:00-06:00","headline":"Unit 3 Lesson 16, Simulations","mainEntityOfPage":{"@type":"WebPage","@id":"https://shruthim0.github.io/datapirates/2022/12/12/unit3lesson16.html"},"url":"https://shruthim0.github.io/datapirates/2022/12/12/unit3lesson16.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/datapirates/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="https://shruthim0.github.io/datapirates/feed.xml" /><link rel="shortcut icon" type="image/x-icon" href="/datapirates/images/pflag.ico"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -70,13 +70,13 @@ window.onload = wrap_img;
         <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title p-name" itemprop="name headline">Unit 3 Lesson 16</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-12-12T00:00:00-06:00" itemprop="datePublished">
+    <h1 class="post-title p-name" itemprop="name headline">Unit 3 Lesson 16, Simulations</h1><p class="post-meta post-meta-title"><time class="dt-published" datetime="2022-12-12T00:00:00-06:00" itemprop="datePublished">
         Dec 12, 2022
       </time>
        • <span class="read-time" title="Estimated read time">
     
     
-      2 min read
+      4 min read
     
 </span></p>
 
@@ -249,6 +249,169 @@ Say we want to find out what the optimal number of aircrafts that can be in the 
 </div>
     
 
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Check-in">Check-in<a class="anchor-link" href="#Check-in"> </a></h3><p>With your teams discuss what could be the answer for the question below. Once you think you have the right answer, raise your hand and explain why you think the answer you have chosen is correct. If you get the correct answer, you get candy :)</p>
+<p>Question: 
+The following code simulates the feeding of 4 fish in an aquarium while the owner is on a 5-day trip:</p>
+<p>numFish ← 4
+foodPerDay ← 20
+foodLeft ← 160
+daysStarving ← 0</p>
+<p>REPEAT 5 TIMES {
+    foodConsumed ← numFish * foodPerDay
+    foodLeft ← foodLeft - foodConsumed
+    IF (foodLeft &lt; 0) {
+        daysStarving ← daysStarving + 1
+    }
+}</p>
+<ul>
+<li><p>Why is this simulation considered an abstraction?</p>
+</li>
+<li><p>1: It uses a conditional to execute one part of the code only when a particular condition is met.</p>
+</li>
+<li>2: It uses a REPEAT loop to run the same block of code multiple times.</li>
+<li>3: It simplifies a real-world scenario into something that can be modeled in code and executed on a computer.</li>
+<li>4: It does not request input from the user or display output to the user.</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Let's-look-at-an-example:-Coin-Flip">Let's look at an example: Coin Flip<a class="anchor-link" href="#Let's-look-at-an-example:-Coin-Flip"> </a></h3>
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">coinflip</span><span class="p">():</span>         <span class="c1">#def function </span>
+    <span class="n">randomflip</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#picks either 0 or 1 randomly (50/50 chance of either) </span>
+    <span class="k">if</span> <span class="n">randomflip</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#assigning 0 to be heads--&gt; if 0 is chosen then it will print, &quot;Heads&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Heads&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">randomflip</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#assigning 1 to be tails--&gt; if 1 is chosen then it will print, &quot;Tails&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tails&quot;</span><span class="p">)</span>
+
+<span class="c1">#Tossing the coin 5 times:</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">coinflip</span><span class="p">()</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">coinflip</span><span class="p">()</span>
+<span class="n">t3</span> <span class="o">=</span> <span class="n">coinflip</span><span class="p">()</span>
+<span class="n">t4</span> <span class="o">=</span> <span class="n">coinflip</span><span class="p">()</span>
+<span class="n">t5</span> <span class="o">=</span> <span class="n">coinflip</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Using-Binary-for-Simulations">Using Binary for Simulations<a class="anchor-link" href="#Using-Binary-for-Simulations"> </a></h3><p>jiya</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Explanation of ^^</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hacks">Hacks<a class="anchor-link" href="#Hacks"> </a></h3><p>Shruthi, Noor, Ananya</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Hack #1: Create an algorithm that will flip a dice</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Hack #2: Using the questions bank below, create a quiz that presents the user a random question and calculates the user's score. You can use the template below or make your own. Making your own using a loop can give you extra point.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">questions</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="n">Q1</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">Q1</span> <span class="o">==</span> <span class="p">:</span>
+    
+
+<span class="n">Q2</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">Q2</span> <span class="o">==</span> <span class="p">:</span>
+   
+<span class="n">Q3</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">Q3</span> <span class="o">==</span> <span class="p">:</span>
+   
+
+<span class="n">Q4</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+
+
+
+
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot; you scored &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">correct</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">questions</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Hack #3</p>
+
+</div>
+</div>
+</div>
 </div>
 
 
