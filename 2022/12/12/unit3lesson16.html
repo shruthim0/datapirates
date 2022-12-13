@@ -77,7 +77,7 @@ window.onload = wrap_img;
        • <span class="read-time" title="Estimated read time">
     
     
-      5 min read
+      4 min read
     
 </span></p>
 
@@ -138,17 +138,16 @@ window.onload = wrap_img;
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="What-are-simulations?">What are simulations?<a class="anchor-link" href="#What-are-simulations?"> </a></h3><p><strong>Take notes on vocabulary terms and concepts!</strong></p>
 <ul>
-<li><strong>Simulations</strong> are abstractions that mimic more complex objects or phenomenas from the real world, used for specific purposes<ul>
-<li>What are abstractions? Abstraction is the process of simplifying instructions or a concept in order to make a task easier and simpler to explain and/or do. One example of abstraction is a model. Models (like one of an airplane) are not actual airplanes. They are smaller and have less information than actual planes. This simplification is an example of abstraction.</li>
+<li><strong>Simulations</strong> are abstractions that mimic more complex objects or phenomena from the real world<ul>
 <li>Purposes include drawing inferences without the contraints of the real world </li>
 </ul>
 </li>
 <li>Simulations use varying sets of values to reflect the changing state of a real phenomenon</li>
-<li>Often, when developing an abstract simulation, it is neccessary to remove specific deatils or simplify aspects.       <ul>
+<li>Often, when developing a simulation, it is necessary to remove specific details or simplify aspects      <ul>
 <li>Simulations can often contain bias based on which details or real-world elements were included/excluded</li>
 </ul>
 </li>
-<li>Simulations allow the formulation and redinement of hypotheses under consideration</li>
+<li>Simulations allow the formulation of hypotheses under consideration</li>
 <li>Variability and randomness of the world is considered using random number generators</li>
 <li>Examples: rolling dice, spinners, molecular models, analyze chemicals/reactions...</li>
 </ul>
@@ -167,8 +166,7 @@ window.onload = wrap_img;
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Funtions/programs-needed-often-when-creating-simulations">Funtions/programs needed often when creating simulations<a class="anchor-link" href="#Funtions/programs-needed-often-when-creating-simulations"> </a></h3><p>(these will be helpful when completing the classwork and homework!)</p>
-
+<h3 id="Funtions/programs-needed-often-when-creating-simulations">Funtions/programs needed often when creating simulations<a class="anchor-link" href="#Funtions/programs-needed-often-when-creating-simulations"> </a></h3>
 </div>
 </div>
 </div>
@@ -179,7 +177,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span> <span class="c1"># a module that defines a series of functions for generating or manipulating random integers</span>
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">random</span> <span class="c1"># a module that defines a series of functions for generating or manipulating random integers</span>
 <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">()</span> <span class="c1">#returns a randomly selected element from the specified sequence</span>
 <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span> <span class="c1"># returns random value from list</span>
 <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1">#randomly selects an integer from given range; range in this case is from 0 to 10</span>
@@ -219,7 +217,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-python"><pre><span></span>
 </pre></div>
 
     </div>
@@ -236,7 +234,7 @@ window.onload = wrap_img;
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">mycloset</span><span class="p">():</span>
+<div class=" highlight hl-python"><pre><span></span><span class="k">def</span> <span class="nf">mycloset</span><span class="p">():</span>
     <span class="n">myclothes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;red shoes&quot;</span><span class="p">,</span> <span class="s2">&quot;green pants&quot;</span><span class="p">,</span> <span class="s2">&quot;tie&quot;</span><span class="p">,</span> <span class="s2">&quot;belt&quot;</span><span class="p">]</span>
 </pre></div>
 
@@ -249,25 +247,29 @@ window.onload = wrap_img;
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Check-in">Check-in<a class="anchor-link" href="#Check-in"> </a></h3><p>With your teams DISCUSS what could be the answer for the question below. Once you think you have the right answer, in this notebook explain why you think this is the answer(You can do this with your team or by yourself). We will be checking for this(its okay if you dont get the right answer, jutst explain your thinking), 
-Question: 
+<h3 id="Check-in">Check-in<a class="anchor-link" href="#Check-in"> </a></h3><p>With your teams discuss what could be the answer for the question below. Once you think you have the right answer, raise your hand and explain why you think the answer you have chosen is correct. If you get the correct answer, you get a reward :)</p>
+<p>Question: 
 The following code simulates the feeding of 4 fish in an aquarium while the owner is on a 5-day trip:</p>
-<p>numFish ← 4
-foodPerDay ← 20
-foodLeft ← 160
-daysStarving ← 0</p>
-<p>REPEAT 5 TIMES {
-    foodConsumed ← numFish * foodPerDay
-    foodLeft ← foodLeft - foodConsumed
-    IF (foodLeft &lt; 0) {
-        daysStarving ← daysStarving + 1
-    }
-}</p>
+<p>numFish ← 4</p>
+<p>foodPerDay ← 20</p>
+<p>foodLeft ← 160</p>
+<p>daysStarving ← 0</p>
+<p>REPEAT 5 TIMES {</p>
+
+<pre><code>foodConsumed ← numFish * foodPerDay
+
+foodLeft ← foodLeft - foodConsumed
+
+IF (foodLeft &lt; 0) {
+
+    daysStarving ← daysStarving + 1
+
+}
+</code></pre>
+<p>}</p>
+<p><em>Why is this simulation considered an abstraction?</em></p>
 <ul>
-<li><p>Why is this simulation considered an abstraction?</p>
-</li>
-<li><p>1: It uses a conditional to execute one part of the code only when a particular condition is met.</p>
-</li>
+<li>1: It uses a conditional to execute one part of the code only when a particular condition is met.</li>
 <li>2: It uses a REPEAT loop to run the same block of code multiple times.</li>
 <li>3: It simplifies a real-world scenario into something that can be modeled in code and executed on a computer.</li>
 <li>4: It does not request input from the user or display output to the user.</li>
@@ -289,7 +291,7 @@ daysStarving ← 0</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
 
 <span class="k">def</span> <span class="nf">coinflip</span><span class="p">():</span>         <span class="c1">#def function </span>
     <span class="n">randomflip</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#picks either 0 or 1 randomly (50/50 chance of either) </span>
@@ -311,24 +313,6 @@ daysStarving ← 0</p>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Heads
-Tails
-Heads
-Heads
-Tails
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     
 
@@ -347,7 +331,7 @@ Tails
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-python"><pre><span></span>
 </pre></div>
 
     </div>
@@ -359,14 +343,7 @@ Tails
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Using-Binary-for-Simulations">Using Binary for Simulations<a class="anchor-link" href="#Using-Binary-for-Simulations"> </a></h3><p>Now, you will combine everything we have talked about so far, plus binary. 
-Imagine that there is a zombie apolcalypse. A household with 8 survivors is observed. Let's create a simulation where we see how many of the people in this household are turned. This will involve 3 functions:</p>
-<ol>
-<li>First, a function for randomizing decimal number 0-255</li>
-<li>Next, a function for converting this to an 8-bit binary number (one for each person)</li>
-<li>Lastly, a function to read the binary bits and assign each person a label (zombie or not) based on position of 0s and 1s</li>
-</ol>
-<p>The amount of people who are zombies is randomly determined. Based on the placement of the 1s and 0s in the 8 bit number, each person is assigned as being a zombie or not.</p>
+<h3 id="Using-Binary-for-Simulations">Using Binary for Simulations<a class="anchor-link" href="#Using-Binary-for-Simulations"> </a></h3><p>jiya</p>
 
 </div>
 </div>
@@ -378,17 +355,7 @@ Imagine that there is a zombie apolcalypse. A household with 8 survivors is obse
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
-
-<span class="k">def</span> <span class="nf">randomnum</span><span class="p">():</span> <span class="c1"># function for generating random int</span>
-    
-
-<span class="k">def</span> <span class="nf">converttobin</span><span class="p">(</span><span class="n">n</span><span class="p">):</span> <span class="c1"># function for converting decimal to binary</span>
-    
-
-<span class="k">def</span> <span class="nf">survivors</span><span class="p">(</span><span class="n">binary</span><span class="p">):</span> <span class="c1"># function to assign position</span>
-    <span class="n">survivorstatus</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Jiya&quot;</span><span class="p">,</span> <span class="s2">&quot;Shruthi&quot;</span><span class="p">,</span> <span class="s2">&quot;Noor&quot;</span><span class="p">,</span> <span class="s2">&quot;Ananya&quot;</span> <span class="p">,</span> <span class="s2">&quot;Peter Parker&quot;</span><span class="p">,</span> <span class="s2">&quot;Andrew Garfield&quot;</span><span class="p">,</span> <span class="s2">&quot;Tom Holland&quot;</span><span class="p">,</span> <span class="s2">&quot;Tobey Maguire&quot;</span><span class="p">]</span>
-    <span class="c1"># replace the names above with your choice of people in the house</span>
+<div class=" highlight hl-python"><pre><span></span>
 </pre></div>
 
     </div>
@@ -400,7 +367,72 @@ Imagine that there is a zombie apolcalypse. A household with 8 survivors is obse
 
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Hacks">Hacks<a class="anchor-link" href="#Hacks"> </a></h3><p>See the hw notebook for all the hacks!</p>
+<p>Explanation of ^^</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Hacks">Hacks<a class="anchor-link" href="#Hacks"> </a></h3><p>Shruthi, Noor, Ananya</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Hack #1: Create an algorithm that will flip a dice</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Hack #2: Using the questions bank below, create a quiz that presents the user a random question and calculates the user's score. You can use the template below or make your own. Making your own using a loop can give you extra point.</p>
+
+</div>
+</div>
+</div>
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="n">questions</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+
+
+<span class="n">Q1</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">Q1</span> <span class="o">==</span> <span class="p">:</span>
+    
+
+<span class="n">Q2</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">Q2</span> <span class="o">==</span> <span class="p">:</span>
+   
+<span class="n">Q3</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">Q3</span> <span class="o">==</span> <span class="p">:</span>
+   
+
+<span class="n">Q4</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+
+
+
+
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot; you scored &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">correct</span><span class="p">)</span> <span class="o">+</span><span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">questions</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Hack #3: Create your own simulation based on a randomized real-world scenario. What would you want to simulate? (cannot be the coins, dice, closet or other previous examples)</p>
 
 </div>
 </div>
