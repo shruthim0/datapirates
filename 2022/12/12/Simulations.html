@@ -140,6 +140,76 @@ window.onload = wrap_img;
 </div>
     
 
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">random</span> <span class="c1"># a module that defines a series of functions for generating or manipulating random integers</span>
+<span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">()</span> <span class="c1">#returns a randomly selected element from the specified sequence</span>
+<span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span> <span class="c1"># returns random value from list</span>
+<span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1">#randomly selects an integer from given range; range in this case is from 0 to 10</span>
+<span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="c1">#will generate a random float between 0.0 to 1.</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">coinflip</span><span class="p">():</span>         <span class="c1">#def function </span>
+    <span class="n">randomflip</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1">#picks either 0 or 1 randomly (50/50 chance of either) </span>
+    <span class="k">if</span> <span class="n">randomflip</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="c1">#assigning 0 to be heads--&gt; if 0 is chosen then it will print, &quot;Heads&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Heads&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">randomflip</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#assigning 1 to be tails--&gt; if 1 is chosen then it will print, &quot;Tails&quot;</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tails&quot;</span><span class="p">)</span>
+
+<span class="c1">#Tossing the coin 5 times:</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">coinflip</span><span class="p">()</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">coinflip</span><span class="p">()</span>
+<span class="n">t3</span> <span class="o">=</span> <span class="n">coinflip</span><span class="p">()</span>
+<span class="n">t4</span> <span class="o">=</span> <span class="n">coinflip</span><span class="p">()</span>
+<span class="n">t5</span> <span class="o">=</span> <span class="n">coinflip</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
+    
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-python"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    
+
 </div>
 
 
