@@ -1,0 +1,53 @@
+---
+layout: default
+permalink: /Nutrition Analysis/
+title: Nutrition Analysis
+search_exclude: true
+---
+<html>
+<head>
+<style>
+body {
+  background-color: pink;
+}
+</style>
+</head>
+<body>
+
+<h1>Nutrition Analysis</h1>
+
+<p>Hi! Please enter your ingrediants or recipe into the text box and click analyze!</p>
+
+</body>
+</html>
+<html>
+<head>
+<style>
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button {background-color: #BFF8D6;} /* Blue */
+</style>
+</head>
+<body>
+
+
+<button class="button button2">Analyze</button>
+
+</body>
+</html>
+
+>###### Enter Here
+<textarea rows="10" cols="80">    
+
+
+
