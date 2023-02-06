@@ -17,7 +17,7 @@ body {
 
 <style>
 div.container {
-background-color: #ffffff;
+background-color: rgb(156, 236, 199);
 }
 div.container p {
 font-family: Georgia;
@@ -27,8 +27,8 @@ text-align: center;
 font-weight: normal;
 text-decoration: underline;
 text-transform: none;
-color: #8fa385;
-background-color: #ffffff;
+color: #f0687e;
+background-color: #f0687e;
 }
 </style>
 
@@ -39,65 +39,4 @@ background-color: #ffffff;
 
 
 <p>Hi! Please enter your ingrediants or recipe into the text box and click analyze!</p>
-
-</body>
-</html>
-<html>
-<head>
-<style>
-.button {
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-}
-
-.button {background-color: #BFF8D6;} /* Blue */
-</style>
-</head>
-<body>
-
-  <html>
-    <head>
-    <script>
-    function getVote(int) {
-      var xmlhttp=new XMLHttpRequest();
-      xmlhttp.onreadystatechange=function() {
-        if (this.readyState==4 && this.status==200) {
-          document.getElementById("poll").innerHTML=this.responseText;
-        }
-      }
-      xmlhttp.open("GET","poll_vote.php?vote="+int,true);
-      xmlhttp.send();
-    }
-    </script>
-    </head>
-    <body>
-    
-    <div id="poll">
-    <h3>Do you like PHP and AJAX so far?</h3>
-    <form>
-    Yes: <input type="radio" name="vote" value="0" onclick="getVote(this.value)"><br>
-    No: <input type="radio" name="vote" value="1" onclick="getVote(this.value)">
-    </form>
-    </div>
-    
-    </body>
-    </html>
-
-
-<button class="button button2">Analyze</button>
-
-</body>
-</html>
-
->###### Enter Here
-<textarea rows="10" cols="80">    
-
-
 
