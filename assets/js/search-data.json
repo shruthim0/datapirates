@@ -25,11 +25,22 @@
 
   
   
+      ,"page0": {
+          "title": "FRESH Meal Plan Planning",
+          "content": ". Daily Specifications . Move the mouse over the button to open the dropdown menu. . Calorie Selection under 1000 1000-2000 2000-3000 over 3000 &lt;/body&gt; &lt;/html&gt; The select multiple attribute . You may select multiple meals . Choose which meals you want to include in meal prep: breakfast lunch dinner dessert Hold down the Ctrl (windows) or Command (Mac) button to select multiple options. . . How many snacks would you like to include? How many people are included in your meal plan? Click the &quot;Submit&quot; button once finished . . . Sample Calander . &#10094; | &#10095; | January 2023 | . Mo | Tu | We | Th | Fr | Sa | Su | . 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 26 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | . . .",
+          "url": "https://shruthim0.github.io/datapirates/_pages/2023-01-25-FRESHplan.html",
+          "relUrl": "/_pages/2023-01-25-FRESHplan.html",
+          "date": ""
+      }
+      
+  
+
+  
 
   
 
   
-      ,"page2": {
+      ,"page3": {
           "title": "About Us",
           "content": ". Name Fun Fact Role . Ananya | I am 15 years old, and was born in Patna, India. My hobbies are dancing, playing the piano, and robotics! | - | . Jiya | I like to read, play the piano, and spend time with my family at the beach | - | . Noor | I enjoy painting, traveling, and sleeping. I have 5 pets (3 dogs, 2 cats) | - | . Shruthi | I enjoy baking, swimming, and playing the violin :) | - | .",
           "url": "https://shruthim0.github.io/datapirates/about/",
@@ -68,7 +79,7 @@
   
 
   
-      ,"page14": {
+      ,"page15": {
           "title": "",
           "content": "Sitemap: {{ “sitemap.xml” | absolute_url }} | .",
           "url": "https://shruthim0.github.io/datapirates/robots.txt",
