@@ -67,14 +67,12 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <head>
-<style>
+        <style>
 body {
   background-color: #719371;
 }
+
 </style>
-</head>
-<body>
 
 <title>-</title>
 <style>
@@ -89,8 +87,8 @@ text-align: center;
 font-weight: normal;
 text-decoration: underline;
 text-transform: none;
-color: #8fa385;
-background-color: #2e5c35;
+color: #fcfffb;
+background-color: #204528;
 }
 div.container h5 {
 text-align: center;
@@ -100,10 +98,18 @@ font-family: Georgia;
 </style>
 <div class="container">
 <p>Food for Your Mood</p>
-<h5>Enter your food preferences and get a custom recipe list!</h5>
+<h5>Indecisive about your next meal?</h5>
 </div>
 </br>
 </br>
+<body>
+	<img src="https://wallpaperaccess.com/full/6133151.jpg" alt="" >
+ </body>
+ </br>
+ </br>
+ </br>
+ </br>
+ </br>
 
 </head>
 <body>
@@ -132,7 +138,7 @@ font-family: Georgia;
   cursor: pointer;
 }
 
-.button-primary {background-color: #5B8C5F;}
+.get_meal {background-color: #5B8C5F;}
 
 * {
 	box-sizing: border-box;
@@ -153,6 +159,14 @@ img {
 
 p {
 	margin-bottom: 5px;
+	font-family: Georgia;
+	font-size: 15px;
+	font-style: normal;
+	text-align: center;
+	font-weight: normal;
+	text-decoration: underline;
+	text-transform: none;
+	color: #8fa385;
 }
 
 h3 {
@@ -222,8 +236,7 @@ const createMeal = (meal) => {
 			<div class="columns five">
 				<img src="${meal.strMealThumb}" alt="Meal Image">
 				${meal.strCategory ? `<p><strong>Category:</strong> ${meal.strCategory}</p>` : ''}
-				${meal.strArea ? `<p><strong>Area:</strong> ${meal.strArea}</p>` : ''}
-				${meal.strTags ? `<p><strong>Tags:</strong> ${meal.strTags.split(',').join(', ')}</p>` : ''}
+				${meal.strArea ? `<p><strong>Cuisine:</strong> ${meal.strArea}</p>` : ''}
 				<h5>Ingredients:</h5>
 				<ul>
 					${ingredients.map(ingredient => `<li>${ingredient}</li>`).join('')}
