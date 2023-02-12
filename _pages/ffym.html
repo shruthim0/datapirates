@@ -5,7 +5,6 @@ title: Food For Your Mood
 search_exclude: true
 ---
 
-<html>
 <head>
 <style>
 body {
@@ -15,16 +14,40 @@ body {
 </head>
 <body>
 
-<html>
+<title>-</title>
+<style>
+div.container {
+background-color: #ffffff;
+}
+div.container p {
+font-family: Georgia;
+font-size: 50px;
+font-style: normal;
+text-align: center;
+font-weight: normal;
+text-decoration: underline;
+text-transform: none;
+color: #8fa385;
+background-color: #2e5c35;
+}
+div.container h5 {
+text-align: center;
+font-family: Georgia;
+}
+
+</style>
+<div class="container">
+<p>Food for Your Mood</p>
+<h5>Enter your food preferences and get a custom recipe list!</h5>
+</div>
+</br>
+</br>
+
+</head>
+<body>
 
 <div class="container">
-	<div class="row text-center">
-		<h3>
-			Feeling hungry?
-		</h3>
-		<h5>Get a random meal by clicking below</h5>
-		<button class="button-primary" id="get_meal">Get Meal 🍔</button>
-
+		<button class="button-primary" id="get_meal">Generate Recipe</button>
 	</div>
 	<div id="meal" class="row meal"></div>
 </div>
@@ -34,6 +57,20 @@ body {
 <style>
 
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+
+.button {
+  border: none;
+  color: rgb(105, 149, 113);
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button-primary {background-color: #5B8C5F;}
 
 * {
 	box-sizing: border-box;
@@ -137,7 +174,7 @@ const createMeal = (meal) => {
 		</div>
 		${meal.strYoutube ? `
 		<div class="row">
-			<h5>Video Recipe</h5>
+			<h5>Video Tutorial </h5>
 			<div class="videoWrapper">
 				<iframe width="420" height="315"
 				src="https://www.youtube.com/embed/${meal.strYoutube.slice(-11)}">
