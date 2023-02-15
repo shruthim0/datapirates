@@ -36,7 +36,7 @@ search_exclude: true
 	</style>
 	<div class="container">
 	<p>Food for Your Mood</p>
-	<h5>Enter your preferences and get a recipe!</h5>
+	<h5>How much do you know about how food affects our brains and mood?</h5>
 	</div>
 	</br>
 	</br>
@@ -49,109 +49,151 @@ search_exclude: true
 	 </br>
 	 </br>
 
-	 <html>
-  <head>
-    <title>Recipe Generator</title>
+	 <div id="container">
+		<header>
+		  <h1>Answer the following question!</h1>
+		</header>
+		<section>
+		  <form name="quizForm" >
+			<h3>1. ________ of your serotonin is produced in your gastrointestinal tract</h3>
+			<input type="radio" name="q1" value="a" id="q1a"> 75% <br>
+			<input type="radio" name="q1" value="b" id="q1b"> 35% <br>
+			<input type="radio" name="q1" value="c" id="q1c"> 95% <br>
+			<input type="radio" name="q1" value="d" id="q1d"> 12% <br>
+	  
+			<h3>2. Which of these ingredients are scientifically proven to make you feel happier</h3>
+			<input type="radio" name="q2" value="a" id="q2a"> Strawberries, Anchovies, Lactic Acid<br>
+			<input type="radio" name="q2" value="b" id="q2b"> Quinoa, Dark Chocolate, Folic acid<br>
+			<input type="radio" name="q2" value="c" id="q2c"> Cheese, Milk, Acetic Acid<br>
+			<input type="radio" name="q2" value="d" id="q2d"> Tilapia, Potato, Acetate <br>
+	  
+			<h3>3. Turkey meat contains tryptophan, an amino acid that </h3>
+			<input type="radio" name="q3" value="a" id="q3a"> Makes you feel alert and stressed<br>
+			<input type="radio" name="q3" value="b" id="q3b"> Increases your heart rate <br>
+			<input type="radio" name="q3" value="c" id="q3c"> Decreases your chance of developing kidney cancer<br>
+			<input type="radio" name="q3" value="d" id="q3d"> Makes you sleepy and relaxed<br>
+	  
+			<h3>4. The Mediterranean diet reduces the risk of developing depression by 42% </h3>
+			<input type="radio" name="q4" value="a" id="q4a"> True<br>
+			<input type="radio" name="q4" value="b" id="q4b"> False<br>
+	  
+			<h3>5. ___ out of the ___ amino acids your body needs, are obtained through food </h3>
+			<input type="radio" name="q5" value="a" id="q5a"> 9, 20 <br>
+			<input type="radio" name="q5" value="b" id="q5b"> 10, 19 <br>
+			<input type="radio" name="q5" value="c" id="q5c"> 14, 26 <br>
+			<input type="radio" name="q5" value="d" id="q5d"> 7, 20 <br>
 
-    <style>
+			<h3>6. On average, the brain consumes ___ of a person's daily caloric intake </h3>
+			<input type="radio" name="q6" value="a" id="q6a"> 90 %<br>
+			<input type="radio" name="q6" value="b" id="q6b"> 15 % <br>
+			<input type="radio" name="q6" value="c" id="q6c"> 20 %<br>
+			<input type="radio" name="q6" value="d" id="q6d"> 60 % <br>
+
+			<h3>7. Omega-3 fatty acids have been shown to be effective as either stand-alone or adjunctive treatment for... </h3>
+			<input type="radio" name="q7" value="a" id="q7a"> Post traumatic stress disorder (PTSD), popcorn-lung, and depression <br>
+			<input type="radio" name="q7" value="b" id="q7b"> Certain forms of brain cancer, major depressive disorder, kidney stones, and attention deficit hyperactivity disorder (ADHD)  <br>
+			<input type="radio" name="q7" value="c" id="q7c"> Obsessive-compulsive disorder (OCD), depression, and borderline personality disorder (BPD) <br>
+			<input type="radio" name="q7" value="d" id="q7d"> Attention deficit hyperactivity disorder (ADHD), major depressive disorder, bipolar depression, and post traumatic stress disorder (PTSD) <br>
+			<br><br>
+			<input type="submit" value="Submit Answers">
+		  </form>
+		  <div id="results"></div>
+		</section>
+	  </div>
+
+<style>
+
 body {
-  font-family: Arial, sans-serif;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+}
+
+[id=container] {
+  width: 50 ;
+  background: white;
+  color: #000;
+  margin: 20px auto;
+  overflow: auto;
+  padding: 2.6rem;
+  border: 2px solid #0b472a;
+}
+
+header {
   text-align: center;
+  border-bottom: #E7D8C9 dashed 1px;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: green;
-  color: white;
-  border: none;
-  border-radius: 10px;
+header h1 {
+  margin: 0;
+  padding: 0;
+}
+
+header p {
+  padding: 0;
+  margin-top: 5px;
+  color: #000;
+}
+
+input[type="submit"] {
+  background: #14321a;
+  border: 0;
+  color: #fff;
+  padding: 10px 12px;
   cursor: pointer;
 }
 
-#recipe_output {
-  margin-top: 20px;
-  text-align: left;
+[id=results] {
+  margin-top: 1rem;
 }
 
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-input[type="number"] {
+[id=results] h3 {
+  background: #EEE4E1;
   padding: 10px;
-  font-size: 16px;
-  width: 50px;
-  margin-bottom: 20px;
+  margin: 10px 0;
+  color: #000;
 }
 
-#submit_rating {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: blue;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
+</style>
+
+<script>
+var formElement = document.forms['quizForm'];
+
+formElement.onsubmit = function submitAnswers(){
+	var total = 7;
+	var score = 0;
+	
+	// Get User Input
+	var q1 = document.forms["quizForm"]["q1"].value,
+	    q2 = document.forms["quizForm"]["q2"].value,
+	    q3 = document.forms["quizForm"]["q3"].value,
+	    q4 = document.forms["quizForm"]["q4"].value,
+	    q5 = document.forms["quizForm"]["q5"].value;
+		q6 = document.forms["quizForm"]["q6"].value;
+		q7 = document.forms["quizForm"]["q7"].value;
+	
+	// Validation
+	for(i = 1; i <= total;i++){
+		if(eval('q'+i) === null || eval('q'+i) === ''){
+			alert('You missed question '+ i);
+			return false;
+		}
+	}
+	
+	// Set Correct Answers
+	var answers = ["c","b","d","a","a","c","d"];
+	
+	// Check Answers
+	for(i = 1; i <= total;i++){
+		if(eval('q'+i) === answers[i - 1]){
+			score++;
+		}
+	}
+	
+	// Display Results
+	var results = document.getElementById('results');
+	results.innerHTML = '<h3>You scored <span>'+score+'</span> out of <span>'+total+'</span></h3>';
+	
+	return false;
 }
-
-    </style>
-  </head>
-  <body>
-    <h1>Recipe Generator</h1>
-    <form>
-      <label for="ingredients">Ingredients:</label>
-      <input type="text" id="ingredients" name="ingredients">
-      <br><br>
-      <label for="prep_time">Preparation Time (minutes):</label>
-      <input type="number" id="prep_time" name="prep_time">
-      <br><br>
-      <button type="submit">Generate Recipe</button>
-    </form>
-    <div id="recipe_output"></div>
-
-    <script>
-const generateRecipeButton = document.querySelector("#generate_recipe_button");
-const recipeOutput = document.querySelector("#recipe_output");
-
-generateRecipeButton.addEventListener("click", async () => {
-  // Use an API to generate a random recipe
-  const response = await fetch("https://api.example.com/recipes/random");
-  const recipe = await response.json();
-
-  // Display the recipe in the HTML
-  recipeOutput.innerHTML = `
-    <h2>Recipe</h2>
-    <p>${recipe.name}</p>
-    <p>${recipe.ingredients}</p>
-    <p>${recipe.instructions}</p>
-    <label for="rating">Rate this recipe out of 10:</label>
-    <input type="number" id="rating" name="rating" min="1" max="10">
-    <button id="submit_rating">Submit Rating</button>
-  `;
-
-  const ratingInput = document.querySelector("#rating");
-  const submitRatingButton = document.querySelector("#submit_rating");
-
-  submitRatingButton.addEventListener("click", async () => {
-    const rating = ratingInput.value;
-
-    // Use an API to submit the rating for the recipe
-    await fetch(`https://api.example.com/recipes/${recipe.id}/rating`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ rating })
-    });
-
-    // Display a message to the user indicating that their rating was submitted
-    recipeOutput.innerHTML += "<p>Your rating was submitted!</p>";
-  });
-});
-
-    </script>
-  </body>
-</html>
+</script>
