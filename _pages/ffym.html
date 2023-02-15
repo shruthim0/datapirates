@@ -96,6 +96,7 @@ search_exclude: true
 			<input type="radio" name="q7" value="d" id="q7d"> Attention deficit hyperactivity disorder (ADHD), major depressive disorder, bipolar depression, and post traumatic stress disorder (PTSD) <br>
 			<br><br>
 			<input type="submit" value="Submit Answers">
+			<input type="name" name = "name" value="Enter your name/username">
 		  </form>
 		  <div id="results"></div>
 		</section>
@@ -171,6 +172,7 @@ formElement.onsubmit = function submitAnswers(){
 	    q5 = document.forms["quizForm"]["q5"].value;
 		q6 = document.forms["quizForm"]["q6"].value;
 		q7 = document.forms["quizForm"]["q7"].value;
+		name = document.forms["quizForm"]["name"].value;
 	
 	// Validation
 	for(i = 1; i <= total;i++){
@@ -192,7 +194,7 @@ formElement.onsubmit = function submitAnswers(){
 	
 	// Display Results
 	var results = document.getElementById('results');
-	results.innerHTML = '<h3>You scored <span>'+score+'</span> out of <span>'+total+'</span></h3>';
+	results.innerHTML = '<h3>'+name+', you scored <span>'+score+'</span> out of <span>'+total+'</span></h3>';
 	
 	return false;
 }
