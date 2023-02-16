@@ -1,10 +1,9 @@
 ---
 layout: post
 categories: [week 20]
-title: Magical Meal Prep
+title: Fantastic Food Finder
 ---
 
-<!DOCTYPE html>
 <HTML>
 
   <!-- start of title code -->
@@ -341,38 +340,40 @@ title: Magical Meal Prep
     </script>
     
 </head>
-</HTML>
+
 <div class="w3-card-4">
-    <form onsubmit="validate(); return false;" class="w3-container w3-theme w3-card">
-        <!-- input tag -->
-        <div class="w3-container w3-theme w3-card">
-            <h1>        Recipe Search based upon MealType and Cuisine </h1>
-        </div>
-        <label for="MealTypes">Please select a meal type:</label>
-        <select name="MealTypes" id="MealTypes">
-            <option value="Breakfast">Breakfast</option>
-            <option value="Lunch">Lunch</option>
-            <option value="Dinner">Dinner</option>
-            <option value="Dessert">Dessert</option>
-        </select>
-        <br />
-        <br />
-        <label for="CuisineTypes">Please select a Cuisine type:</label>
-        <select name="CuisineTypes" id="CuisineTypes">
-            <option value="Chinese">Chinese</option>
-            <option value="Italian">Italian</option>
-            <option value="Indian">Indian</option>
-            <option value="Mexican">Mexican</option>
-            <option value="American">American</option>
-        </select>
-        <br />
-        <input id="submit" type="submit" value="Find Recipes" onclick="showTable(); return false;">
-        <input id="clear" type="submit" value="Clear Recipes" onclick="$('#table').remove();">
-        <br />
-        <div id="table"></div>
-    </form>
-    <!-- ordered list -->
-    <!-- linking javascript -->
+  <form onsubmit="validate(); return false;" class="w3-container w3-theme w3-card">
+      <!-- input tag -->
+      <div class="w3-container w3-theme w3-card">
+          <h1>        Recipe Search based upon MealType and Cuisine </h1>
+      </div>
+      <label for="MealTypes">Please select a meal type:</label>
+      <select name="MealTypes" id="MealTypes">
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Dessert">Dessert</option>
+      </select>
+      <br />
+      <br />
+      <label for="CuisineTypes">Please select a Cuisine type:</label>
+      <select name="CuisineTypes" id="CuisineTypes">
+          <option value="Chinese">Chinese</option>
+          <option value="Italian">Italian</option>
+          <option value="Indian">Indian</option>
+          <option value="Mexican">Mexican</option>
+          <option value="American">American</option>
+      </select>
+      <br />
+      <input id="submit" type="submit" value="Find Recipes" onclick="showTable(); return false;">
+      <input id="clear" type="submit" value="Clear Recipes" onclick="$('#table').remove();">
+      <br />
+      <div id="table"></div>
+  </form>
+  <!-- ordered list -->
+  <!-- linking javascript -->
 
 
-   </div>
+ </div>
+
+</HTML>
