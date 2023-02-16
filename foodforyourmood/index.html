@@ -301,10 +301,7 @@ formElement.onsubmit = function submitAnswers(){
 </script>
 
 
-<!-- CODE FOR SCOREBOARD -->.
-
-<button id="viewbutton"
-        onclick="view('Look at scoreboard');">View Scoreboard</button>
+<!-- CODE FOR SCOREBOARD -->
 
 <table>
   <thead>
@@ -324,8 +321,11 @@ formElement.onsubmit = function submitAnswers(){
     <p><label>
 		Name:
         <input type="text" name="name" id="name" required>
+    </label></p> 
+    Score:
+        <input type="text" name="uid" id="uid" required>
     </label></p>
-        Score:
+    Rate the recipe you recieved:
         <input type="text" name="uid" id="uid" required>
     </label></p>
     <p><label>
@@ -338,7 +338,7 @@ formElement.onsubmit = function submitAnswers(){
   // prepare HTML result container for new output
   const resultContainer = document.getElementById("result");
   // prepare URL's to allow easy switch from deployment and localhost
-  const url = "http://172.24.52.125:8086/api/scores"
+  const url = "http://172.22.163.243:8086/api/scores"
   const create_fetch = url + '/create';
   const read_fetch = url + '/';
 
@@ -383,6 +383,7 @@ formElement.onsubmit = function submitAnswers(){
             }
         })
     })
+    
     // catch fetch errors (ie ACCESS to server blocked)
     .catch(err => {
       console.error(err);
