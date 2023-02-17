@@ -308,7 +308,6 @@ formElement.onsubmit = function submitAnswers(){
   <tr>
     <th>Score</th>
     <th>Name</th>
-    <th>Recipe Rating</th>
   </tr>
   </thead>
   <tbody id="result">
@@ -442,7 +441,6 @@ formElement.onsubmit = function submitAnswers(){
     const tr = document.createElement("tr");
     const uid = document.createElement("td");
     const name = document.createElement("td");  
-    const rating = document.createElement("td")
 
     // obtain data that is specific to the API
     uid.innerHTML = data.uid; 
@@ -452,7 +450,6 @@ formElement.onsubmit = function submitAnswers(){
     // add HTML to container
     tr.appendChild(uid);
     tr.appendChild(name);
-    tr.appendChild(rating);
 
     resultContainer.appendChild(tr);
   }
