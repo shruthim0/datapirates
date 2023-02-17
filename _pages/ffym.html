@@ -261,7 +261,7 @@ formElement.onsubmit = function submitAnswers(){
         <input type="text" name="name" id="name" required>
     </label></p> 
     Score:
-        <input type="text" name="uid" id="uid" required>
+        <input type="text" name="score" id="score" required>
     </label></p>
     Rate the recipe you recieved:
         <input type="text" name="rating" id="rating" required>
@@ -338,7 +338,7 @@ formElement.onsubmit = function submitAnswers(){
     //Validate Password (must be 6-20 characters in len)
     //verifyPassword("click");
     const body = {
-        uid: document.getElementById("uid").value,
+        score: document.getElementById("score").value,
         name: document.getElementById("name").value,
 
     };
@@ -377,16 +377,16 @@ formElement.onsubmit = function submitAnswers(){
 
   function add_row(data) {
     const tr = document.createElement("tr");
-    const uid = document.createElement("td");
+    const score = document.createElement("td");
     const name = document.createElement("td");  
 
     // obtain data that is specific to the API
-    uid.innerHTML = data.uid; 
+    score.innerHTML = data.score; 
     name.innerHTML = data.name; 
     rating.innerHTMML = data.rating
 
     // add HTML to container
-    tr.appendChild(uid);
+    tr.appendChild(score);
     tr.appendChild(name);
 
     resultContainer.appendChild(tr);
