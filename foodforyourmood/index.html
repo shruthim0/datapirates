@@ -295,7 +295,7 @@ formElement.onsubmit = function submitAnswers(){
 
         // Display the  recipe link
         const recipeLink = document.getElementById("recipe-link");
-        recipeLink.innerHTML = "Here's a recipe for you!--->"+"<a href='" + randomLink + "'>" + randomLink + "</a>";
+        recipeLink.innerHTML = "Here's a recipe perfect for your mood!---_>"+"<a href='" + randomLink + "'>" + randomLink + "</a>";
   }
 
 </script>
@@ -308,6 +308,7 @@ formElement.onsubmit = function submitAnswers(){
   <tr>
     <th>Score</th>
     <th>Name</th>
+    <th>Recipe Rating</th>
   </tr>
   </thead>
   <tbody id="result">
@@ -326,7 +327,7 @@ formElement.onsubmit = function submitAnswers(){
         <input type="text" name="uid" id="uid" required>
     </label></p>
     Rate the recipe you recieved:
-        <input type="text" name="uid" id="uid" required>
+        <input type="text" name="rating" id="rating" required>
     </label></p>
     <p><label>
     <p>
@@ -338,13 +339,14 @@ formElement.onsubmit = function submitAnswers(){
   // prepare HTML result container for new output
   const resultContainer = document.getElementById("result");
   // prepare URL's to allow easy switch from deployment and localhost
-  const url = "http://172.22.163.243:8086/api/scores"
+  var url = "http://fresh4all.duckdns.org/"
+  // const url = "http://172.22.163.243:8086/api/scores"
   const create_fetch = url + '/create';
   const read_fetch = url + '/';
 
   // Load users on buttonclick event
 	
-	read_users();
+  read_users();
 
   // Display User Table, data is fetched from Backend Database
   function read_users() {
@@ -401,6 +403,7 @@ formElement.onsubmit = function submitAnswers(){
     const body = {
         uid: document.getElementById("uid").value,
         name: document.getElementById("name").value,
+
     };
     const requestOptions = {
         method: 'POST',
@@ -438,16 +441,18 @@ formElement.onsubmit = function submitAnswers(){
   function add_row(data) {
     const tr = document.createElement("tr");
     const uid = document.createElement("td");
-    const name = document.createElement("td");
-  
+    const name = document.createElement("td");  
+    const rating = document.createElement("td")
 
     // obtain data that is specific to the API
     uid.innerHTML = data.uid; 
     name.innerHTML = data.name; 
+    rating.innerHTMML = data.rating
 
     // add HTML to container
     tr.appendChild(uid);
     tr.appendChild(name);
+    tr.appendChild(rating);
 
     resultContainer.appendChild(tr);
   }
