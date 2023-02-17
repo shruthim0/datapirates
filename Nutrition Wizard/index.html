@@ -74,10 +74,6 @@ body {
   background-color: #FFF8DC;
 }
 
-</style>
-
-<title>-</title>
-<style>
 div.container {
 background-color:#FF7F50;
 }
@@ -90,38 +86,15 @@ font-weight: normal;
 text-decoration: underline;
 text-transform: none;
 color: #ffffff;
-background-color:	#DC143C;
+background-color: #DC143C;
 }
 div.container h5 {
 text-align: center;
 font-family: Georgia;
 }
 
-</style>
-<div class="container">
-<p>＊*•̩̩͙✩•̩̩͙*˚Nutrition Wizard˚*•̩̩͙✩•̩̩͙*˚＊</p>
-<h5>“One cannot think well, love well, sleep well if one has not dined well.”</h5>
-<h5>🥗Enter any ingrediants and get the nutrition facts🥗</h5>
-<h5>Don't forget to vote!</h5>
-
-</div>
-</br>
-</br>
-
-
-<html>
-<body>
-   <img src="https://www.rti.org/sites/default/files/impact-hero-images/ia_food_hero.jpg" alt="" >
-</body>
-</html>
-
-
-
-<html>
-<head>
-<style>
 .button {
-  background-color:#37FA90;
+  background-color: #37FA90;
   border: none;
   color: white;
   padding: 15px 64px;
@@ -133,21 +106,65 @@ font-family: Georgia;
   cursor: pointer;
 }
 </style>
+
+<title>Nutrition Wizard</title>
+
 </head>
 <body>
+<div class="container">
+<p>＊˚*•̩̩͙✩•̩̩͙*˚Nutrition Wizard˚*•̩̩͙✩•̩̩͙*˚＊</p>
+<h5>“One cannot think well, love well, sleep well if one has not dined well.”</h5>
+<h5>🥗Enter any ingredients and get the nutrition facts🥗</h5>
+<h5>Don't forget to vote!</h5>
+</div>
 
-  <form id="nutritionbutton" method = "POST" action="">
-    <button class="button">⭒❃Analyze❃⭒</button>
-    <h4>Please enter the ingrediants and their amount(make sure to seperate with comma)</h4>
-    <textarea rows="7" cols="125">    
-    </textarea>
-  </form>
+<br />
+<br />
+
+<div>
+<form id="nutritionform">
+  <h4>Please enter the ingredients and their amount (make sure to separate with comma):</h4>
+  <textarea id="input" rows="7" cols="125"></textarea>
+</form>
+
+<br />
+
+<button class="button" onclick="analyze()">⭒❃Analyze❃⭒</button>
+</div>
+
+<div id="result">
+</div>
+
+<script>
+function analyze() {
+  const input = document.getElementById("input").value;
+  const url = `https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data?ingr=${input}`;
+  const headers = {
+    "X-RapidAPI-Host": "edamam-edamam-nutrition-analysis.p.rapidapi.com",
+    "X-RapidAPI-Key": "2d79bbde22mshed34d34c65d8472p1365cejsn7594c6e54840"
+  };
+
+  fetch(url, {
+    method: "GET",
+    headers: headers
+  })
+    .then(response => response.json())
+    .then(data => {
+      const nutrients = data.totalNutrients;
+      const result = document.getElementById("result");
+      result.innerHTML = "";
+
+      for (let nutrient in nutrients) {
+        const nutrientDiv = document.createElement("div");
+        nutrientDiv.innerHTML = `${nutrients[nutrient].label}: ${nutrients[nutrient].quantity.toFixed(2)} ${nutrients[nutrient].unit}`;
+        result.appendChild(nutrientDiv);
+      }
+    });
+}
+</script>
 
 </body>
 </html>
-
-
-
 
       </div>
     </main><footer class="site-footer h-card">
