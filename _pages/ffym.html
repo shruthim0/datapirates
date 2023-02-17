@@ -246,7 +246,6 @@ formElement.onsubmit = function submitAnswers(){
   <tr>
     <th>Score</th>
     <th>Name</th>
-    <th>Recipe Rating</th>
   </tr>
   </thead>
   <tbody id="result">
@@ -277,7 +276,7 @@ formElement.onsubmit = function submitAnswers(){
   // prepare HTML result container for new output
   const resultContainer = document.getElementById("result");
   // prepare URL's to allow easy switch from deployment and localhost
-  var url = "http://fresh4all.duckdns.org/"
+  var url = "http://fresh4all.duckdns.org/api/scores"
   // const url = "http://172.22.163.243:8086/api/scores"
   const create_fetch = url + '/create';
   const read_fetch = url + '/';
@@ -380,7 +379,6 @@ formElement.onsubmit = function submitAnswers(){
     const tr = document.createElement("tr");
     const uid = document.createElement("td");
     const name = document.createElement("td");  
-    const rating = document.createElement("td")
 
     // obtain data that is specific to the API
     uid.innerHTML = data.uid; 
@@ -390,7 +388,6 @@ formElement.onsubmit = function submitAnswers(){
     // add HTML to container
     tr.appendChild(uid);
     tr.appendChild(name);
-    tr.appendChild(rating);
 
     resultContainer.appendChild(tr);
   }
