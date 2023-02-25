@@ -1,5 +1,5 @@
 ---
-layout: base
+layout: default
 permalink: /feedback/
 title: Feedback
 search_exclude: true
@@ -63,7 +63,7 @@ search_exclude: true
         <th>Actions</th>
       </tr>
       <tr>
-        <td>Nutrition Analysis</td>
+        <td>Nutrition Wizard</td>
         <td id="NA">0</td>
         <td id="NADislikes">0</td>
         <td>
@@ -71,7 +71,7 @@ search_exclude: true
           <button onclick="dislikefeature('NADislikes')">Dislike</button>
         </td>
       </tr>
-      <td>Nutrition Analysis</td>
+      <td>Fantastic Food Finder</td>
         <td id="NA">0</td>
         <td id="NADislikes">0</td>
         <td>
@@ -112,4 +112,49 @@ search_exclude: true
       }
     </script>
   </body>
+
+<!-- below is the code for leaving reviews -->
+
+<head>
+	<title>Review Page</title>
+</head>
+<body>
+	<h1>Reviews</h1>
+	<form>
+		<label for="review">Leave a review:</label><br>
+		<textarea id="review" name="review" rows="4" cols="50"></textarea><br>
+		<label for="name">Your name:</label>
+		<input type="text" id="name" name="name"><br>
+		<button type="button" onclick="addReview()">Submit</button>
+	</form>
+	<div id="past-reviews">
+		<h2>Past Reviews</h2>
+	</div>
+	<script>
+		let reviews = [];
+
+		function addReview() {
+			const review = document.getElementById("review").value;
+			const name = document.getElementById("name").value;
+			const reviewElement = document.createElement("p");
+			const reviewText = document.createTextNode(`${name}: ${review}`);
+			reviewElement.appendChild(reviewText);
+			document.body.appendChild(reviewElement);
+			reviews.push({name, review});
+			updatePastReviews();
+		}
+
+		function updatePastReviews() {
+			const pastReviewsElement = document.getElementById("past-reviews");
+			pastReviewsElement.innerHTML = "<h2>Past Reviews</h2>";
+			for (let i = 0; i < reviews.length; i++) {
+				const reviewElement = document.createElement("p");
+				const reviewText = document.createTextNode(`${reviews[i].name}: ${reviews[i].review}`);
+				reviewElement.appendChild(reviewText);
+				pastReviewsElement.appendChild(reviewElement);
+			}
+		}
+	</script>
+</body>
+
 </html>
