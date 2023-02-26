@@ -156,18 +156,10 @@ window.onload = wrap_img;
 			<input type="radio" name="q7" value="b" id="q7b"> Certain forms of brain cancer, major depressive disorder, kidney stones, and attention deficit hyperactivity disorder (ADHD)  <br>
 			<input type="radio" name="q7" value="c" id="q7c"> Obsessive-compulsive disorder (OCD), depression, and borderline personality disorder (BPD) <br>
 			<input type="radio" name="q7" value="d" id="q7d"> Attention deficit hyperactivity disorder (ADHD), major depressive disorder, bipolar depression, and post traumatic stress disorder (PTSD) <br>
-			
-      <h3>8. How are you feeling today? </h3>
-			<input type="radio" name="q8" value="a" id="q8a"> Happy <br>
-			<input type="radio" name="q8" value="b" id="q8b"> Sad  <br>
-			<input type="radio" name="q8" value="c" id="q8c"> Stressed <br>
-			<input type="radio" name="q8" value="d" id="q8d"> Angry <br>
-      <input type="radio" name="q8" value="d" id="q8e"> Meh/Not Sure <br>
       
       <br><br>
 			<input type="submit" value="Submit Answers">
 			<input type="name" name = "name" value="Enter your name/username">
-      <button onclick="generateLink()">Generate Recipe For Me</button>
       <p id="recipe-link"></p>
 		  </form>
 		  <div id="results"></div>
@@ -229,7 +221,10 @@ input[type="submit"] {
 
 </style>
 
+
 <script>
+
+// SCORE CALCULATOR
 var formElement = document.forms['quizForm'];
 
 formElement.onsubmit = function submitAnswers(){
@@ -273,205 +268,241 @@ formElement.onsubmit = function submitAnswers(){
 	return false;
 }
 
-  //Recipe Generator
-  function generateLink() {
-        // List of recipes
-        const recipeLinks = [
-          "https://www.foodnetwork.com/recipes/ina-garten/roast-chicken-recipe-1940592",
-          "https://www.allrecipes.com/recipe/27010/classic-beef-stroganoff/",
-          "https://www.epicurious.com/recipes/food/views/pork-tacos-with-pineapple-salsa-56389926",
-          "https://www.delish.com/uk/cooking/recipes/a31010080/chicken-alfredo-pasta-bake-recipe/",
-          "https://www.bbcgoodfood.com/recipes/ultimate-spaghetti-carbonara-recipe",
-          "https://www.simplyrecipes.com/recipes/banana_bread/",
-          "https://joyfoodsunshine.com/the-most-amazing-chocolate-chip-cookies/",
-          "https://www.abeautifulplate.com/the-best-homemade-margherita-pizza/",
-          "https://www.modernhoney.com/the-best-snickerdoodle-cookie-recipe/",
-          "https://www.allrecipes.com/recipe/82659/old-fashioned-onion-rings/",
-          "https://www.modernhoney.com/fettuccine-alfredo/",
-        ];
+  // MOOD RECIPE GENERATOR          
+</script>
 
-        // Generate a  recipe link
-        const randomLink = recipeLinks[Math.floor(Math.random() * recipeLinks.length)];
+<html>
+  <head>
+    <title>--------------</title>
+  </head>
+  <body>
+    <h1>What's your mood?</h1>
+    <form>
+      <label for="mood">Select your mood:</label>
+      <select id="mood">
+        <option value="happy">Happy</option>
+        <option value="sad">Sad</option>
+        <option value="angry">Angry</option>
+        <option value="stressed">Stressed</option>
+      </select>
+      <br><br>
+      <input type="button" value="Get Recipe" onclick="getRandomRecipe()">
+    </form>
+    <div id="recipe"></div>
+    <script>
+      const moodRecipes = {
+        happy: [
+          "Banana Pancakes",
+          "Rainbow Smoothie Bowl",
+          "Grilled Cheese Sandwich",
+          "Chocolate Chip Cookies"
+        ],
+        sad: [
+          "Mac and Cheese",
+          "Chicken Noodle Soup",
+          "Beef Stew",
+          "Brownies"
+        ],
+        angry: [
+          "Spicy Chicken Curry",
+          "Jalapeno Poppers",
+          "Buffalo Wings",
+          "Chili Con Carne"
+        ],
+        stressed: [
+          "Healthy Buddha Bowl",
+          "Salmon with Vegetables",
+          "Quinoa Salad",
+          "Green Smoothie"
+        ]
+      };
 
-        // Display the  recipe link
-        const recipeLink = document.getElementById("recipe-link");
-        recipeLink.innerHTML = "Here's a recipe perfect for your mood!---_>"+"<a href='" + randomLink + "'>" + randomLink + "</a>";
-  }
+      function getRandomRecipe() {
+        const mood = document.getElementById("mood").value;
+        const recipes = moodRecipes[mood];
+        const randomIndex = Math.floor(Math.random() * recipes.length);
+        const recipe = recipes[randomIndex];
+        document.getElementById("recipe").innerHTML = recipe;
+      }
+    </script>
+  </body>
+</html>
+<br>
+<br>
+<br>
+<br>
+
+<form>
+  <p><label>
+    <body>
+      <h1>        Proud of your quiz score? Enter it onto the scoreboard!</h1>
+      Name:
+      <input type="text" name="name" id="name" required>
+  </label></p> 
+      Score:
+      <input type="text" name="score" id="score" onchange="validate()" required>
+  <p>
+      <button>Create</button>
+  </p>
+</form>
+
+<table>
+<thead>
+<tr>
+  <th>Name</th>
+  <th>Score</th>
+</tr>
+</thead>
+<tbody id="result1">
+  <!-- javascript generated data -->
+</tbody>
+</table>
+
+</div>
+
+<script>
+// prepare HTML result container for new output
+const resultContainer = document.getElementById("result1");
+// prepare URL's to allow easy switch from deployment and localhost
+// const url = "http://fresh4all.duckdns.org/api/scores"
+const url = "http://172.26.193.226:8086/api/scores"
+const create_fetch = url + '/create';
+const read_fetch = url + '/';
+
+// Load users on page entry
+read_users();
+
+// Display User Table, data is fetched from Backend Database
+function read_users() {
+// prepare fetch options
+const read_options = {
+  method: 'GET', // *GET, POST, PUT, DELETE, etc.
+  mode: 'cors', // no-cors, *cors, same-origin
+  cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+  credentials: 'omit', // include, *same-origin, omit
+  headers: {
+    'Content-Type': 'application/json'
+  },
+};
+
+// fetch the data from API
+fetch(read_fetch, read_options)
+  // response is a RESTful "promise" on any successful fetch
+  .then(response => {
+    // check for response errors
+    if (response.status !== 200) {
+        const errorMsg = 'Database read error: ' + response.status;
+        console.log(errorMsg);
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.innerHTML = errorMsg;
+        tr.appendChild(td);
+        resultContainer.appendChild(tr);
+        return;
+    }
+    // valid response will have json data
+    response.json().then(data => {
+        console.log(data);
+        for (let row in data) {
+          console.log(data[row]);
+          add_row(data[row]);
+        }
+    })
+})
+// catch fetch errors (ie ACCESS to server blocked)
+.catch(err => {
+  console.error(err);
+  const tr = document.createElement("tr");
+  const td = document.createElement("td");
+  td.innerHTML = err;
+  tr.appendChild(td);
+  resultContainer.appendChild(tr);
+});
+}
+
+
+function create_user(){
+//Validate Password (must be 6-20 characters in len)
+//verifyPassword("click");
+const body = {
+    score: document.getElementById("score").value,
+    name: document.getElementById("name").value,
+};
+const requestOptions = {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+        "content-type": "application/json",
+        'Authorization': 'Bearer my-token',
+    },
+};
+
+// URL for Create API
+// Fetch API call to the database to create a new user
+fetch(create_fetch, requestOptions)
+  .then(response => {
+    // trap error response from Web API
+    if (response.status !== 200) {
+      const errorMsg = 'Database create error: ' + response.status;
+      console.log(errorMsg);
+      const tr = document.createElement("tr");
+      const td = document.createElement("td");
+      td.innerHTML = errorMsg;
+      tr.appendChild(td);
+      resultContainer.appendChild(tr);
+      return;
+    }
+    // response contains valid result
+    response.json().then(data => {
+        console.log(data);
+        //add a table row for the new/created userid
+        add_row(data);
+    })
+})
+}
+
+function add_row(data) {
+const tr = document.createElement("tr");
+const name = document.createElement("td");
+const score = document.createElement("td");
+
+
+// obtain data that is specific to the API
+score.innerHTML = data.score; 
+name.innerHTML = data.name; 
+
+// add HTML to container
+tr.appendChild(name);
+tr.appendChild(score);
+
+resultContainer.appendChild(tr);
+}
+
+// function delete_record() {
+//   var name = document.getElementById("delete").value  
+//   return fetch('http://192.168.1.225:8087/api/scores' + name, {
+//     method: 'DELETE',
+//   })
+//   .then(response=>response.json())
+// }
+
+function validate(){
+var userScore = document.getElementById('score').value;
+var userName = document.getElementById('name').value;
+if(isNaN(userScore) || userScore > 7 || userScore < 0 || !isNaN(userName)){
+alert("Score MUST be between 0 and 7!");
+}else{
+create_user();
+}
+}
 
 </script>
 
-  
-    <form>
-        <p><label>
-            Name:
-            <input type="text" name="name" id="name" required>
-        </label></p> 
-            Score:
-            <input type="text" name="score" id="score" onchange="validate()" required>
-        <p>
-            <button>Create</button>
-        </p>
-    </form>
-  
-    <table>
-      <thead>
-      <tr>
-        <th>Name</th>
-        <th>Score</th>
-      </tr>
-      </thead>
-      <tbody id="result1">
-        <!-- javascript generated data -->
-      </tbody>
-    </table>
-  
-  </div>
-  
-  <script>
-    
-    // prepare HTML result container for new output
-    const resultContainer = document.getElementById("result1");
-    // prepare URL's to allow easy switch from deployment and localhost
-    // const url = "http://fresh4all.duckdns.org/api/scores"
-    const url = "http://172.26.193.226:8086/api/scores"
-    const create_fetch = url + '/create';
-    const read_fetch = url + '/';
-  
-    // Load users on page entry
-    read_users();
-  
-    // Display User Table, data is fetched from Backend Database
-    function read_users() {
-      // prepare fetch options
-      const read_options = {
-        method: 'GET', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: 'omit', // include, *same-origin, omit
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      };
-  
-      // fetch the data from API
-      fetch(read_fetch, read_options)
-        // response is a RESTful "promise" on any successful fetch
-        .then(response => {
-          // check for response errors
-          if (response.status !== 200) {
-              const errorMsg = 'Database read error: ' + response.status;
-              console.log(errorMsg);
-              const tr = document.createElement("tr");
-              const td = document.createElement("td");
-              td.innerHTML = errorMsg;
-              tr.appendChild(td);
-              resultContainer.appendChild(tr);
-              return;
-          }
-          // valid response will have json data
-          response.json().then(data => {
-              console.log(data);
-              for (let row in data) {
-                console.log(data[row]);
-                add_row(data[row]);
-              }
-          })
-      })
-      // catch fetch errors (ie ACCESS to server blocked)
-      .catch(err => {
-        console.error(err);
-        const tr = document.createElement("tr");
-        const td = document.createElement("td");
-        td.innerHTML = err;
-        tr.appendChild(td);
-        resultContainer.appendChild(tr);
-      });
-    }
-  
-   
-    function create_user(){
-      //Validate Password (must be 6-20 characters in len)
-      //verifyPassword("click");
-      const body = {
-          score: document.getElementById("score").value,
-          name: document.getElementById("name").value,
-      };
-      const requestOptions = {
-          method: 'POST',
-          body: JSON.stringify(body),
-          headers: {
-              "content-type": "application/json",
-              'Authorization': 'Bearer my-token',
-          },
-      };
-  
-      // URL for Create API
-      // Fetch API call to the database to create a new user
-      fetch(create_fetch, requestOptions)
-        .then(response => {
-          // trap error response from Web API
-          if (response.status !== 200) {
-            const errorMsg = 'Database create error: ' + response.status;
-            console.log(errorMsg);
-            const tr = document.createElement("tr");
-            const td = document.createElement("td");
-            td.innerHTML = errorMsg;
-            tr.appendChild(td);
-            resultContainer.appendChild(tr);
-            return;
-          }
-          // response contains valid result
-          response.json().then(data => {
-              console.log(data);
-              //add a table row for the new/created userid
-              add_row(data);
-          })
-      })
-    }
-  
-    function add_row(data) {
-      const tr = document.createElement("tr");
-      const name = document.createElement("td");
-      const score = document.createElement("td");
-    
-  
-      // obtain data that is specific to the API
-      score.innerHTML = data.score; 
-      name.innerHTML = data.name; 
-  
-      // add HTML to container
-      tr.appendChild(name);
-      tr.appendChild(score);
-  
-      resultContainer.appendChild(tr);
-    }
-  
-  // function delete_record() {
-  //   var name = document.getElementById("delete").value  
-  //   return fetch('http://192.168.1.225:8087/api/scores' + name, {
-  //     method: 'DELETE',
-  //   })
-  //   .then(response=>response.json())
-  // }
-    
-  function validate(){
-    var userScore = document.getElementById('score').value;
-    var userName = document.getElementById('name').value;
-    if(isNaN(userScore) || userScore > 7 || userScore < 0 || !isNaN(userName)){
-      alert("Your score must be between 0 and 7! ");
-    }else{
-      create_user();
-    }
-  }
-  
-  
-  </script>
-  
-  <div>
-  <form action="javascript:delete_record()">
-    <input type="text" name="delete" id="delete" required><button>Delete Record</button>
-  </form>
-  <div>
+<div>
+<form action="javascript:delete_record()">
+  <input type="text" name="delete" id="delete" required><button>Delete Record</button>
+</form>
+<div>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/datapirates/"></data>
