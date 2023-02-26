@@ -67,7 +67,8 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <style>
+         <!-- css styling for title and cover pic -->
+<style>
 	body {
 	  background-color: #719371;
 	}
@@ -111,7 +112,7 @@ window.onload = wrap_img;
 	 </br>
 	 </br>
 
-
+ <!-- css styling for questions -->
    <style>
 
     body {
@@ -167,9 +168,10 @@ window.onload = wrap_img;
     
     </style>
 
+ <!-- html quiz each question has unique name, each answer choice (a,b,c,d has uniqe value), and each mc circle itself has a unique id  -->
 	 <div id="container">
 		<header>
-		  <h1>Answer the following questions!</h1>
+		  <h1>Answer the following questions to get your Food Awareness Score!</h1>
 		</header>
 		<section>
 		  <form name="quizForm" >
@@ -214,26 +216,24 @@ window.onload = wrap_img;
 			<input type="radio" name="q7" value="d" id="q7d"> Attention deficit hyperactivity disorder (ADHD), major depressive disorder, bipolar depression, and post traumatic stress disorder (PTSD) <br>
       <br>
 
-			<h3>8. How are you feeling today? </h3>
-			<input type="radio" name="mood" value="happy" id="happy"> 90 %<br>
-			<input type="radio" name="mood" value="sad" id="sad"> 15 % <br>
-			<input type="radio" name="mood" value="angry" id="angry"> 20 %<br>
-			<input type="radio" name="mood" value="stressed" id="stressed"> 60 % <br>
-
-      <br><br>
-			<input type="submit" value="Submit Answers">
-			<input type="name" name = "name" value="Enter your name/username">
-      <br>
-      <br>
+      <input type="name" name = "name" value="Enter name/username"><br><br>
+			<input type="submit" value="✿ Submit Answers ✿">
       <div id="results"></div>
-      <br>
-      <h1>Get a recipe perfect for you !</h1>
+
+                          <!-- getrecipe button and results -->
+
+			<h1> ----- Hungry? Get a recipe perfect for you mood! -----</h1><br>
+			<input type="radio" name="mood" value="happy" id="happy"> Happy ヽ(•‿•)ノ <br>
+			<input type="radio" name="mood" value="sad" id="sad"> Sad （◞‸◟） <br>
+			<input type="radio" name="mood" value="angry" id="angry"> Angry (ง’̀-‘́)ง <br>
+			<input type="radio" name="mood" value="stressed" id="stressed"> Stressed *ಥ_ಥ* <br><br><br>
+
       <form>
-        <input type="button" value="Get Recipe" onclick="getRandomRecipe()">
+        <input type="button" value="Get Recipe" onclick="getRandomRecipe()"> 
       </form>
 		  </form>
       <br>
-      <div id="recipe"></div>
+      <div id="recipe"></div>  <!-- where results for recipe generator will be displayed -->
 
 		</section>
 	  </div>
@@ -248,7 +248,7 @@ formElement.onsubmit = function submitAnswers(){
 	var total = 7;
 	var score = 0;
 	
-	// Get User Inputs
+	// gets value of each user input form each question
 	var q1 = document.forms["quizForm"]["q1"].value,
 	    q2 = document.forms["quizForm"]["q2"].value,
 	    q3 = document.forms["quizForm"]["q3"].value,
@@ -258,27 +258,25 @@ formElement.onsubmit = function submitAnswers(){
 		  q7 = document.forms["quizForm"]["q7"].value;
 		  name = document.forms["quizForm"]["name"].value;
 	
-	// make sure user answered questions 1-7 (8 will be validated in recipe generator)
-	for(i = 1; i <= total;i++){
-		if(eval('q'+i) === null || eval('q'+i) === ''){
-			alert('You missed question '+ i);
-			return false;
+	// for loop that ensures user answered questions 1-7, error if a question is missed
+	for(i = 1; i <= total;i++){            // i is initialized to 1, i will increment by 1 till i is less than or equal to 7 (total)
+		if(eval('q'+i) === null || eval('q'+i) === ''){    //makes strings based on what i is and evaluates those strings' values like variable names; if the question was not filled the value would be null(empty string)
+			alert('You missed at least question '+ i);  //  if the value is empy then the error message will be displayed
+			return false;   //form will not be submitted if any value is empty
 		}
 	}
 	
-	// Set Correct Answers
-	var answers = ["c","b","d","a","a","c","d"];
-	
-	// Check Answers
-	for(i = 1; i <= total;i++){
-		if(eval('q'+i) === answers[i - 1]){
-			score++;
+	// set correct answers for qs 1-7 and check da answers
+	var answers = ["c","b","d","a","a","c","d"];   //array answers w correct answer choices
+	for(i = 1; i <= total;i++){  //for loop that runs as i is initialized to 1 and increments by 1 til i=7
+		if(eval('q'+i) === answers[i - 1]){   //q+1--> q1 which is evaluated for its value (chosen by user) and compared to correct answer fom answer array
+			score++;  //if answer choice=correct, then 1 is added to score
 		}
 	}
 
 	// Display Results
-	var results = document.getElementById('results');
-	results.innerHTML = '<h3>'+name+', you scored <span>'+score+'</span> out of <span>'+total+'</span></h3>';
+	var results = document.getElementById('results');   // stores results in results container 
+	results.innerHTML = '<h3>'+name+', you scored <span>'+score+'</span> out of <span>'+total+'</span> !!!'+'</span></h3>';  //message giving user scare
 
 
 	return false;
@@ -287,41 +285,46 @@ formElement.onsubmit = function submitAnswers(){
 // MOOD RECIPE GENERATOR          
 </script>
 
+ <!-- js object, moodRecipes, contains 4 lists -->
     <script>
       const moodRecipes = {
         happy: [
           "https://www.aspicyperspective.com/best-hamburger-patty-recipe/",
           "https://sallysbakingaddiction.com/vanilla-cake/",
           "https://thefoodcharlatan.com/homemade-pizza-recipe/",
-          "https://whatsgabycooking.com/homemade-pizookie/"
+          "https://whatsgabycooking.com/homemade-pizookie/",
+          "https://sallysbakingaddiction.com/strawberry-cake/"
         ],
         sad: [
           "https://joyfoodsunshine.com/chocolate-ice-cream/",
           "https://thestayathomechef.com/the-most-amazing-chocolate-cake/",
           "https://www.thechunkychef.com/family-favorite-baked-mac-and-cheese/",
-          "https://theforkedspoon.com/chicken-soup-recipe/"
+          "https://theforkedspoon.com/chicken-soup-recipe/",
+          "https://natashaskitchen.com/tomato-soup-recipe/"
         ],
         angry: [
           "https://www.foodandwine.com/recipes/spicy-chicken-curry",
           "https://cooking.nytimes.com/recipes/1020843-jalapeno-poppers",
           "https://gimmedelicious.com/hot-spicy-baked-buffalo-chicken-wings/",
-          "https://www.tasteofhome.com/recipes/chili-con-carne/"
+          "https://www.tasteofhome.com/recipes/chili-con-carne/",
+          "https://eatwithclarity.com/spicy-chili-garlic-noodles/"
         ],
         stressed: [
           "https://www.simplyrecipes.com/recipes/french_onion_soup/",
           "https://www.lecremedelacrumb.com/best-potato-wedges-recipe/",
           "https://www.the-girl-who-ate-everything.com/pomegranate-feta-salad/",
-          "https://www.allrecipes.com/recipe/11887/pesto-pasta/"
+          "https://www.allrecipes.com/recipe/11887/pesto-pasta/",
+          "https://www.gimmesomeoven.com/best-mashed-potatoes-recipe/"
         ]
       };
 
 
       function getRandomRecipe() {
-        const mood = document.forms["quizForm"]["mood"].value;
-        const recipes = moodRecipes[mood];
-        const randomIndex = Math.floor(Math.random() * recipes.length);
-        const recipe = recipes[randomIndex];
-        document.getElementById("recipe").innerHTML = recipe;
+        const mood = document.forms["quizForm"]["mood"].value;  // set mood to be the value of the answer chosen in the mood mc (happy, sad, angry, or stressed)
+        const recipes = moodRecipes[mood];   // set recipes to be the specific list from the moodRecipeLinks object
+        const randomIndex = Math.floor(Math.random() * recipes.length); //takes ranodm index from chosen mood list
+        const recipe = recipes[randomIndex]; // gets the corresponding link to chosen index
+        document.getElementById("recipe").innerHTML = `<a href="${recipe}" target="_blank">${recipe}</a>`; // format as active link
       }
     </script>
   </body>
@@ -335,26 +338,30 @@ formElement.onsubmit = function submitAnswers(){
 <form>
   <p><label>
     <body>
-      <h1>Proud of your quiz score? Enter it onto the scoreboard!</h1>
+      <h1>---Proud of your quiz score? Enter it onto the scoreboard!---</h1>
       Name:
-      <input type="text" name="name" id="name" required>
+      <input type="text" name="name" id="name" required> <!--make sure name and score are required fields-->
   </label></p> 
       Score:
-      <input type="text" name="score" id="score" onchange="validate()" required>
+      <input type="text" name="score" id="score" onchange="validate()" required><!--validatescore function will run for this field-->
   <p>
-      <button>Create</button>
+      <button>❊ Add ❊</button>
   </p>
 </form>
 
-<table>
+
+
+<!--SCOREBOARD CODE -->
+
+<!-- creates table w 2 columns titles Name and Score -->
+<table>   
 <thead>
 <tr>
   <th>Name</th>
-  <th>Score</th>
+  <th>Score ☺ </th>
 </tr>
 </thead>
-<tbody id="result1">
-  <!-- javascript generated data -->
+<tbody id="result1">   <!-- this data will be added in -->
 </tbody>
 </table>
 
@@ -363,16 +370,15 @@ formElement.onsubmit = function submitAnswers(){
 <script>
 // prepare HTML result container for new output
 const resultContainer = document.getElementById("result1");
-// prepare URL's to allow easy switch from deployment and localhost
 // const url = "http://fresh4all.duckdns.org/api/scores"
-const url = "http://172.26.193.226:8086/api/scores"
+const url = "http://172.26.198.166:8086/api/scores"
 const create_fetch = url + '/create';
 const read_fetch = url + '/';
 
-// Load users on page entry
+// load table on page entry
 read_users();
 
-// Display User Table, data is fetched from Backend Database
+// display table, data is fetched from fresh4all backend
 function read_users() {
 // prepare fetch options
 const read_options = {
@@ -385,7 +391,7 @@ const read_options = {
   },
 };
 
-// fetch the data from API
+// fetch the data from backend
 fetch(read_fetch, read_options)
   // response is a RESTful "promise" on any successful fetch
   .then(response => {
@@ -422,8 +428,6 @@ fetch(read_fetch, read_options)
 
 
 function create_user(){
-//Validate Password (must be 6-20 characters in len)
-//verifyPassword("click");
 const body = {
     score: document.getElementById("score").value,
     name: document.getElementById("name").value,
@@ -437,8 +441,8 @@ const requestOptions = {
     },
 };
 
-// URL for Create API
-// Fetch API call to the database to create a new user
+// create api
+// fetch api call to the database to create a new name+score
 fetch(create_fetch, requestOptions)
   .then(response => {
     // trap error response from Web API
@@ -455,7 +459,7 @@ fetch(create_fetch, requestOptions)
     // response contains valid result
     response.json().then(data => {
         console.log(data);
-        //add a table row for the new/created userid
+        //add a table row for the new/created score+name
         add_row(data);
     })
 })
@@ -467,42 +471,30 @@ const name = document.createElement("td");
 const score = document.createElement("td");
 
 
-// obtain data that is specific to the API
+// obtain name and score
 score.innerHTML = data.score; 
 name.innerHTML = data.name; 
 
-// add HTML to container
+// add html to container
 tr.appendChild(name);
 tr.appendChild(score);
 
 resultContainer.appendChild(tr);
 }
 
-// function delete_record() {
-//   var name = document.getElementById("delete").value  
-//   return fetch('http://192.168.1.225:8087/api/scores' + name, {
-//     method: 'DELETE',
-//   })
-//   .then(response=>response.json())
-// }
 
+// validate score and name
 function validate(){
 var userScore = document.getElementById('score').value;
 var userName = document.getElementById('name').value;
-if(isNaN(userScore) || userScore > 7 || userScore < 0 || !isNaN(userName)){
-alert("Score MUST be between 0 and 7!");
+if(isNaN(userScore) || userScore > 7 || userScore < 0 || !isNaN(userName)){  //check if score is not a number, is above 7, below 0, or if username is a #
+  alert("Score MUST be between 0 and 7!");  //if any of the conditions above are met (bad), then error message
 }else{
-create_user();
+  create_user();  // if none of the conditions are met, then the user is created
 }
 }
 
 </script>
-
-<div>
-<form action="javascript:delete_record()">
-  <input type="text" name="delete" id="delete" required><button>Delete Record</button>
-</form>
-<div>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/datapirates/"></data>
