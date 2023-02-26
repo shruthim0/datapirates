@@ -238,73 +238,118 @@ formElement.onsubmit = function submitAnswers(){
 
 </script>
 
-
-<!-- CODE FOR SCOREBOARD -->
-
-<table>
-  <thead>
-  <tr>
-    <th>Score</th>
-    <th>Name</th>
-  </tr>
-  </thead>
-  <tbody id="result">
-    <!-- javascript generated data -->
-  </tbody>
-</table>
-
-<p>Enter your score</p>
-
-<form action="javascript:create_user()">
-    <p><label>
-		Name:
-        <input type="text" name="name" id="name" required>
-    </label></p> 
-    Score:
-        <input type="text" score="score" id="score" required>
-    </label></p>
-    Rate the recipe you recieved:
-        <input type="text" rating="rating" id="rating" required>
-    </label></p>
-    <p><label>
-    <p>
-        <button>Create</button>
-    </p>
-</form>
-
-<script>
-  // prepare HTML result container for new output
-  const resultContainer = document.getElementById("result");
-  // prepare URL's to allow easy switch from deployment and localhost
-  var url = "http://fresh4all.duckdns.org/api/scores"
-  // const url = "http://172.22.163.243:8086/api/scores"
-  const create_fetch = url + '/create';
-  const read_fetch = url + '/';
-
-  // Load users on buttonclick event
-	
-  read_users();
-
-  // Display User Table, data is fetched from Backend Database
-  function read_users() {
-    // prepare fetch options
-    const read_options = {
-      method: 'GET', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'omit', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    };
-
-    // fetch the data from API
-    fetch(read_fetch, read_options)
-      // response is a RESTful "promise" on any successful fetch
-      .then(response => {
-        // check for response errors
-        if (response.status !== 200) {
-            const errorMsg = 'Database read error: ' + response.status;
+  
+    <form>
+        <p><label>
+            Name:
+            <input type="text" name="name" id="name" required>
+        </label></p> 
+            Score:
+            <input type="text" name="score" id="score" onchange="validate()" required>
+        <p>
+            <button>Create</button>
+        </p>
+    </form>
+  
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Score</th>
+      </tr>
+      </thead>
+      <tbody id="result1">
+        <!-- javascript generated data -->
+      </tbody>
+    </table>
+  
+  </div>
+  
+  <script>
+    
+    // prepare HTML result container for new output
+    const resultContainer = document.getElementById("result1");
+    // prepare URL's to allow easy switch from deployment and localhost
+    // const url = "http://fresh4all.duckdns.org/api/scores"
+    const url = "http://172.26.193.226:8086/api/scores"
+    const create_fetch = url + '/create';
+    const read_fetch = url + '/';
+  
+    // Load users on page entry
+    read_users();
+  
+    // Display User Table, data is fetched from Backend Database
+    function read_users() {
+      // prepare fetch options
+      const read_options = {
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'omit', // include, *same-origin, omit
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      };
+  
+      // fetch the data from API
+      fetch(read_fetch, read_options)
+        // response is a RESTful "promise" on any successful fetch
+        .then(response => {
+          // check for response errors
+          if (response.status !== 200) {
+              const errorMsg = 'Database read error: ' + response.status;
+              console.log(errorMsg);
+              const tr = document.createElement("tr");
+              const td = document.createElement("td");
+              td.innerHTML = errorMsg;
+              tr.appendChild(td);
+              resultContainer.appendChild(tr);
+              return;
+          }
+          // valid response will have json data
+          response.json().then(data => {
+              console.log(data);
+              for (let row in data) {
+                console.log(data[row]);
+                add_row(data[row]);
+              }
+          })
+      })
+      // catch fetch errors (ie ACCESS to server blocked)
+      .catch(err => {
+        console.error(err);
+        const tr = document.createElement("tr");
+        const td = document.createElement("td");
+        td.innerHTML = err;
+        tr.appendChild(td);
+        resultContainer.appendChild(tr);
+      });
+    }
+  
+   
+    function create_user(){
+      //Validate Password (must be 6-20 characters in len)
+      //verifyPassword("click");
+      const body = {
+          score: document.getElementById("score").value,
+          name: document.getElementById("name").value,
+      };
+      const requestOptions = {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: {
+              "content-type": "application/json",
+              'Authorization': 'Bearer my-token',
+          },
+      };
+  
+      // URL for Create API
+      // Fetch API call to the database to create a new user
+      fetch(create_fetch, requestOptions)
+        .then(response => {
+          // trap error response from Web API
+          if (response.status !== 200) {
+            const errorMsg = 'Database create error: ' + response.status;
             console.log(errorMsg);
             const tr = document.createElement("tr");
             const td = document.createElement("td");
@@ -312,84 +357,56 @@ formElement.onsubmit = function submitAnswers(){
             tr.appendChild(td);
             resultContainer.appendChild(tr);
             return;
-        }
-        // valid response will have json data
-        response.json().then(data => {
-            console.log(data);
-            for (let row in data) {
-              console.log(data[row]);
-              add_row(data[row]);
-            }
-        })
-    })
-    
-    // catch fetch errors (ie ACCESS to server blocked)
-    .catch(err => {
-      console.error(err);
+          }
+          // response contains valid result
+          response.json().then(data => {
+              console.log(data);
+              //add a table row for the new/created userid
+              add_row(data);
+          })
+      })
+    }
+  
+    function add_row(data) {
       const tr = document.createElement("tr");
-      const td = document.createElement("td");
-      td.innerHTML = err;
-      tr.appendChild(td);
+      const name = document.createElement("td");
+      const score = document.createElement("td");
+    
+  
+      // obtain data that is specific to the API
+      score.innerHTML = data.score; 
+      name.innerHTML = data.name; 
+  
+      // add HTML to container
+      tr.appendChild(name);
+      tr.appendChild(score);
+  
       resultContainer.appendChild(tr);
-    });
+    }
+  
+  // function delete_record() {
+  //   var name = document.getElementById("delete").value  
+  //   return fetch('http://192.168.1.225:8087/api/scores' + name, {
+  //     method: 'DELETE',
+  //   })
+  //   .then(response=>response.json())
+  // }
+    
+  function validate(){
+    var userScore = document.getElementById('score').value;
+    var userName = document.getElementById('name').value;
+    if(isNaN(userScore) || userScore > 7 || userScore < 0 || !isNaN(userName)){
+      alert("Your score must be between 0 and 7! ");
+    }else{
+      create_user();
+    }
   }
-
-  function create_user(){
-    //Validate Password (must be 6-20 characters in len)
-    //verifyPassword("click");
-    const body = {
-        score: document.getElementById("score").value,
-        name: document.getElementById("name").value,
-
-    };
-    const requestOptions = {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: {
-            "content-type": "application/json",
-            'Authorization': 'Bearer my-token',
-        },
-    };
-
-    // URL for Create API
-    // Fetch API call to the database to create a new user
-    fetch(create_fetch, requestOptions)
-      .then(response => {
-        // trap error response from Web API
-        if (response.status !== 200) {
-          const errorMsg = 'Database create error: ' + response.status;
-          console.log(errorMsg);
-          const tr = document.createElement("tr");
-          const td = document.createElement("td");
-          td.innerHTML = errorMsg;
-          tr.appendChild(td);
-          resultContainer.appendChild(tr);
-          return;
-        }
-        // response contains valid result
-        response.json().then(data => {
-            console.log(data);
-            //add a table row for the new/created userid
-            add_row(data);
-        })
-    })
-  }
-
-  function add_row(data) {
-    const tr = document.createElement("tr");
-    const score = document.createElement("td");
-    const rating = document.createElement("td");  
-
-    // obtain data that is specific to the API
-    score.innerHTML = data.score; 
-    name.innerHTML = data.name; 
-    rating.innerHTMML = data.rating
-
-    // add HTML to container
-    tr.appendChild(score);
-    tr.appendChild(name);
-
-    resultContainer.appendChild(tr);
-  }
-
-</script>
+  
+  
+  </script>
+  
+  <div>
+  <form action="javascript:delete_record()">
+    <input type="text" name="delete" id="delete" required><button>Delete Record</button>
+  </form>
+  <div>
