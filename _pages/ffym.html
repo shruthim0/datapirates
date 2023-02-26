@@ -49,6 +49,62 @@ search_exclude: true
 	 </br>
 	 </br>
 
+
+   <style>
+
+    body {
+      color: white;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+    }
+    
+    [id=container] {
+      width: 50 ;
+      background: white;
+      color: #000;
+      margin: 20px auto;
+      overflow: auto;
+      padding: 2.6rem;
+      border: 2px solid #0b472a;
+    }
+    
+    header {
+      text-align: center;
+      border-bottom: #E7D8C9 dashed 1px;
+    }
+    
+    header h1 {
+      margin: 0;
+      padding: 0;
+    }
+    
+    header p {
+      padding: 0;
+      margin-top: 5px;
+      color: #000;
+    }
+    
+    input[type="submit"] {
+      background: #14321a;
+      border: 0;
+      color: #fff;
+      padding: 10px 12px;
+      cursor: pointer;
+    }
+    
+    [id=results] {
+      margin-top: 1rem;
+    }
+    
+    [id=results] h3 {
+      background: #EEE4E1;
+      padding: 10px;
+      margin: 10px 0;
+      color: #000;
+    }
+    
+    </style>
+
 	 <div id="container">
 		<header>
 		  <h1>Answer the following questions!</h1>
@@ -94,70 +150,31 @@ search_exclude: true
 			<input type="radio" name="q7" value="b" id="q7b"> Certain forms of brain cancer, major depressive disorder, kidney stones, and attention deficit hyperactivity disorder (ADHD)  <br>
 			<input type="radio" name="q7" value="c" id="q7c"> Obsessive-compulsive disorder (OCD), depression, and borderline personality disorder (BPD) <br>
 			<input type="radio" name="q7" value="d" id="q7d"> Attention deficit hyperactivity disorder (ADHD), major depressive disorder, bipolar depression, and post traumatic stress disorder (PTSD) <br>
-      
+      <br>
+
+			<h3>8. How are you feeling today? </h3>
+			<input type="radio" name="mood" value="happy" id="happy"> 90 %<br>
+			<input type="radio" name="mood" value="sad" id="sad"> 15 % <br>
+			<input type="radio" name="mood" value="angry" id="angry"> 20 %<br>
+			<input type="radio" name="mood" value="stressed" id="stressed"> 60 % <br>
+
       <br><br>
 			<input type="submit" value="Submit Answers">
 			<input type="name" name = "name" value="Enter your name/username">
-      <p id="recipe-link"></p>
+      <br>
+      <br>
+      <div id="results"></div>
+      <br>
+      <h1>Get a recipe perfect for you !</h1>
+      <form>
+        <input type="button" value="Get Recipe" onclick="getRandomRecipe()">
+      </form>
 		  </form>
-		  <div id="results"></div>
+      <br>
+      <div id="recipe"></div>
+
 		</section>
 	  </div>
-
-<style>
-
-body {
-  color: white;
-  font-family: 'Lato', sans-serif;
-  font-size: 14px;
-}
-
-[id=container] {
-  width: 50 ;
-  background: white;
-  color: #000;
-  margin: 20px auto;
-  overflow: auto;
-  padding: 2.6rem;
-  border: 2px solid #0b472a;
-}
-
-header {
-  text-align: center;
-  border-bottom: #E7D8C9 dashed 1px;
-}
-
-header h1 {
-  margin: 0;
-  padding: 0;
-}
-
-header p {
-  padding: 0;
-  margin-top: 5px;
-  color: #000;
-}
-
-input[type="submit"] {
-  background: #14321a;
-  border: 0;
-  color: #fff;
-  padding: 10px 12px;
-  cursor: pointer;
-}
-
-[id=results] {
-  margin-top: 1rem;
-}
-
-[id=results] h3 {
-  background: #EEE4E1;
-  padding: 10px;
-  margin: 10px 0;
-  color: #000;
-}
-
-</style>
 
 
 <script>
@@ -169,7 +186,7 @@ formElement.onsubmit = function submitAnswers(){
 	var total = 7;
 	var score = 0;
 	
-	// Get User Input
+	// Get User Inputs
 	var q1 = document.forms["quizForm"]["q1"].value,
 	    q2 = document.forms["quizForm"]["q2"].value,
 	    q3 = document.forms["quizForm"]["q3"].value,
@@ -177,10 +194,9 @@ formElement.onsubmit = function submitAnswers(){
 	    q5 = document.forms["quizForm"]["q5"].value;
 		  q6 = document.forms["quizForm"]["q6"].value;
 		  q7 = document.forms["quizForm"]["q7"].value;
-      q7 = document.forms["quizForm"]["q8"].value;
-		name = document.forms["quizForm"]["name"].value;
+		  name = document.forms["quizForm"]["name"].value;
 	
-	// Validation
+	// make sure user answered questions 1-7 (8 will be validated in recipe generator)
 	for(i = 1; i <= total;i++){
 		if(eval('q'+i) === null || eval('q'+i) === ''){
 			alert('You missed question '+ i);
@@ -202,61 +218,44 @@ formElement.onsubmit = function submitAnswers(){
 	var results = document.getElementById('results');
 	results.innerHTML = '<h3>'+name+', you scored <span>'+score+'</span> out of <span>'+total+'</span></h3>';
 
-	
+
 	return false;
 }
 
-  // MOOD RECIPE GENERATOR          
+// MOOD RECIPE GENERATOR          
 </script>
 
-<html>
-  <head>
-    <title>--------------</title>
-  </head>
-  <body>
-    <h1>What's your mood?</h1>
-    <form>
-      <label for="mood">Select your mood:</label>
-      <select id="mood">
-        <option value="happy">Happy</option>
-        <option value="sad">Sad</option>
-        <option value="angry">Angry</option>
-        <option value="stressed">Stressed</option>
-      </select>
-      <br><br>
-      <input type="button" value="Get Recipe" onclick="getRandomRecipe()">
-    </form>
-    <div id="recipe"></div>
     <script>
       const moodRecipes = {
         happy: [
-          "Banana Pancakes",
-          "Rainbow Smoothie Bowl",
-          "Grilled Cheese Sandwich",
-          "Chocolate Chip Cookies"
+          "https://www.aspicyperspective.com/best-hamburger-patty-recipe/",
+          "https://sallysbakingaddiction.com/vanilla-cake/",
+          "https://thefoodcharlatan.com/homemade-pizza-recipe/",
+          "https://whatsgabycooking.com/homemade-pizookie/"
         ],
         sad: [
-          "Mac and Cheese",
-          "Chicken Noodle Soup",
-          "Beef Stew",
-          "Brownies"
+          "https://joyfoodsunshine.com/chocolate-ice-cream/",
+          "https://thestayathomechef.com/the-most-amazing-chocolate-cake/",
+          "https://www.thechunkychef.com/family-favorite-baked-mac-and-cheese/",
+          "https://theforkedspoon.com/chicken-soup-recipe/"
         ],
         angry: [
-          "Spicy Chicken Curry",
-          "Jalapeno Poppers",
-          "Buffalo Wings",
-          "Chili Con Carne"
+          "https://www.foodandwine.com/recipes/spicy-chicken-curry",
+          "https://cooking.nytimes.com/recipes/1020843-jalapeno-poppers",
+          "https://gimmedelicious.com/hot-spicy-baked-buffalo-chicken-wings/",
+          "https://www.tasteofhome.com/recipes/chili-con-carne/"
         ],
         stressed: [
-          "Healthy Buddha Bowl",
-          "Salmon with Vegetables",
-          "Quinoa Salad",
-          "Green Smoothie"
+          "https://www.simplyrecipes.com/recipes/french_onion_soup/",
+          "https://www.lecremedelacrumb.com/best-potato-wedges-recipe/",
+          "https://www.the-girl-who-ate-everything.com/pomegranate-feta-salad/",
+          "https://www.allrecipes.com/recipe/11887/pesto-pasta/"
         ]
       };
 
+
       function getRandomRecipe() {
-        const mood = document.getElementById("mood").value;
+        const mood = document.forms["quizForm"]["mood"].value;
         const recipes = moodRecipes[mood];
         const randomIndex = Math.floor(Math.random() * recipes.length);
         const recipe = recipes[randomIndex];
@@ -265,6 +264,7 @@ formElement.onsubmit = function submitAnswers(){
     </script>
   </body>
 </html>
+
 <br>
 <br>
 <br>
@@ -273,7 +273,7 @@ formElement.onsubmit = function submitAnswers(){
 <form>
   <p><label>
     <body>
-      <h1>        Proud of your quiz score? Enter it onto the scoreboard!</h1>
+      <h1>Proud of your quiz score? Enter it onto the scoreboard!</h1>
       Name:
       <input type="text" name="name" id="name" required>
   </label></p> 
