@@ -207,7 +207,7 @@ function analyze() {
 						"ingr": ingredients.split(",")
 					}),
 					success: function(response) {
-						// add the nutrition data to the table
+						// add the nutrition data to the table.
 						$("#nutritionTable").append("<tr><td>" + response.calories + "</td><td>" + response.totalNutrients.FAT.quantity + " " + response.totalNutrients.FAT.unit + "</td><td>" + response.totalNutrients.CHOCDF.quantity + " " + response.totalNutrients.CHOCDF.unit + "</td><td>" + response.totalNutrients.PROCNT.quantity + " " + response.totalNutrients.PROCNT.unit + "</td></tr>");
 					},
 					error: function(xhr, status, error) {
