@@ -4,8 +4,7 @@ categories: [week 20]
 title: Fantastic Food Finder
 ---
 
-    <HTML>
-
+<html>
     <div class="container">
         <p class="heading">Fantastic Food Finder</p>
         <p class="heading">Plan your next meals! Get recipes everyday based on what food you feel like eating! </p>
@@ -151,7 +150,7 @@ title: Fantastic Food Finder
             .recipeInput {
                 text-align: left;
                 width: 370px;
-                background-color: red !important;
+                background-color: rgb(255, 191, 0) !important;
                 border: 5px solid black;
                 height: 180px;
                 margin-left: 250px;
@@ -238,6 +237,7 @@ title: Fantastic Food Finder
             }
 
             function showTable() {
+                alert("fetching");
                 const read_options = {
                     method: 'GET', // *GET, POST, PUT, DELETE, etc.
                     mode: 'cors', // no-cors, *cors, same-origin
@@ -253,28 +253,6 @@ title: Fantastic Food Finder
                     .then(response => response.json())
                     .then(data => createTable(data));
               
-               
-                var data =
-                    [
-                        {
-                            "id": 12,
-                            "recipecuisine": "American",
-                            "recipelink": "link12",
-                            "recipename": "Custard Pudding",
-                            "recipetype": "Dessert"
-                        },
-                        {
-                            "id": 12,
-                            "recipecuisine": "American",
-                            "recipelink": "link12",
-                            "recipename": "Custard Pudding",
-                            "recipetype": "Dessert"
-                        }
-
-
-
-
-                    ];
 
                 //  $(".table").remove();*/
                //  createTable(data);
@@ -290,8 +268,8 @@ title: Fantastic Food Finder
                 table += `<tr>
                                       <th>Name</th>
                                       <th>Link</th>
-                      <th>Type</th>
-                     <th>Cuisine</th>
+                                      <th>Type</th>
+                                      <th>Cuisine</th>
                                     </tr>`;
 
                 // now add another row to show subject
@@ -300,9 +278,8 @@ title: Fantastic Food Finder
                                       <th width=200></th>
                                       <th width=200></th>
                                       <th width=200></th>
-                                     </tr>`;
-                // now loop through students
-                // show their name and marks
+                                    </tr>`;
+
                 var tr = "";
                 var a = document.getElementById("MealTypes").value;
                 var b = document.getElementById("CuisineTypes").value;
@@ -472,4 +449,4 @@ title: Fantastic Food Finder
 
     </div>
 
-    </HTML>
+</html>
