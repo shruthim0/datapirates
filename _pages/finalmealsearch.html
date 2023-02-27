@@ -67,8 +67,7 @@ window.onload = wrap_img;
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-            <HTML>
-
+        <html>
     <div class="container">
         <p class="heading">Fantastic Food Finder</p>
         <p class="heading">Plan your next meals! Get recipes everyday based on what food you feel like eating! </p>
@@ -214,7 +213,7 @@ window.onload = wrap_img;
             .recipeInput {
                 text-align: left;
                 width: 370px;
-                background-color: red !important;
+                background-color: rgb(255, 191, 0) !important;
                 border: 5px solid black;
                 height: 180px;
                 margin-left: 250px;
@@ -301,6 +300,7 @@ window.onload = wrap_img;
             }
 
             function showTable() {
+                alert("fetching");
                 const read_options = {
                     method: 'GET', // *GET, POST, PUT, DELETE, etc.
                     mode: 'cors', // no-cors, *cors, same-origin
@@ -316,28 +316,6 @@ window.onload = wrap_img;
                     .then(response => response.json())
                     .then(data => createTable(data));
               
-               
-                var data =
-                    [
-                        {
-                            "id": 12,
-                            "recipecuisine": "American",
-                            "recipelink": "link12",
-                            "recipename": "Custard Pudding",
-                            "recipetype": "Dessert"
-                        },
-                        {
-                            "id": 12,
-                            "recipecuisine": "American",
-                            "recipelink": "link12",
-                            "recipename": "Custard Pudding",
-                            "recipetype": "Dessert"
-                        }
-
-
-
-
-                    ];
 
                 //  $(".table").remove();*/
                //  createTable(data);
@@ -353,8 +331,8 @@ window.onload = wrap_img;
                 table += `<tr>
                                       <th>Name</th>
                                       <th>Link</th>
-                      <th>Type</th>
-                     <th>Cuisine</th>
+                                      <th>Type</th>
+                                      <th>Cuisine</th>
                                     </tr>`;
 
                 // now add another row to show subject
@@ -363,9 +341,8 @@ window.onload = wrap_img;
                                       <th width=200></th>
                                       <th width=200></th>
                                       <th width=200></th>
-                                     </tr>`;
-                // now loop through students
-                // show their name and marks
+                                    </tr>`;
+
                 var tr = "";
                 var a = document.getElementById("MealTypes").value;
                 var b = document.getElementById("CuisineTypes").value;
@@ -535,7 +512,7 @@ window.onload = wrap_img;
 
     </div>
 
-    </HTML>
+</html>
       </div>
     </main><footer class="site-footer h-card">
   <data class="u-url" href="/datapirates/"></data>
