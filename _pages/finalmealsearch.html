@@ -312,7 +312,7 @@ window.onload = wrap_img;
                 };
               
 
-                fetch('http://fresh4all.duckdns.org/api/recipes', read_options)
+                fetch('https://fresh4all.duckdns.org/api/recipes', read_options)
                     .then(response => response.json())
                     .then(data => createTable(data));
               
@@ -373,7 +373,7 @@ window.onload = wrap_img;
             function InsertData_new() {
                 alert("inserting...");
                 
-                    fetch('http://fresh4all.duckdns.org/api/recipes/create', {
+                    fetch('https://fresh4all.duckdns.org/api/recipes/create', {
                         method: 'POST',
                         body: JSON.stringify({
                             "recipeid": 13,
@@ -401,7 +401,7 @@ window.onload = wrap_img;
             }
             function InsertData() {
                 alert("inserting...");
-                fetch('http://fresh4all.duckdns.org/api/recipes/create', {
+                fetch('https://fresh4all.duckdns.org/api/recipes/create', {
                     method: 'POST',
                     body: JSON.stringify({
                         "recipeid": 13,
