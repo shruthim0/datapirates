@@ -273,6 +273,8 @@ formElement.onsubmit = function submitAnswers(){
 <br>
 <br>
 
+<!--SCOREBOARD CODE -->
+
 <form>
   <p><label>
     <body>
@@ -281,26 +283,24 @@ formElement.onsubmit = function submitAnswers(){
       <input type="text" name="name" id="name" required> <!--make sure name and score are required fields-->
   </label></p> 
       Score:
-      <input type="text" name="score" id="score" onchange="validate()" required><!--validatescore function will run for this field-->
+      <input type="text" name="score" id="score" onchange="validate()" required> <!--validatescore function will run for this field-->
   <p>
       <button>❊ Add ❊</button>
   </p>
 </form>
 
 
-
-<!--SCOREBOARD CODE -->
-
 <!-- creates table w 2 columns titles Name and Score -->
-<table>   
-<thead>
-<tr>
-  <th>Name</th>
-  <th>Score ☺ </th>
-</tr>
-</thead>
-<tbody id="result1">   <!-- this data will be added in -->
-</tbody>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Score</th>
+  </tr>
+  </thead>
+  <tbody id="result1">
+    <!-- javascript generated data -->
+  </tbody>
 </table>
 
 </div>
@@ -404,32 +404,28 @@ fetch(create_fetch, requestOptions)
 }
 
 function add_row(data) {
-const tr = document.createElement("tr");
-const name = document.createElement("td");
-const score = document.createElement("td");
-
-
+  const tr = document.createElement("tr");
+  const name = document.createElement("td");
+    const score = document.createElement("td");
 // obtain name and score
-score.innerHTML = data.score; 
-name.innerHTML = data.name; 
-
+  score.innerHTML = data.score; 
+  name.innerHTML = data.name; 
 // add html to container
-tr.appendChild(name);
-tr.appendChild(score);
-
-resultContainer.appendChild(tr);
+  tr.appendChild(name);
+  tr.appendChild(score);
+  resultContainer.appendChild(tr);
 }
 
 
 // validate score and name
 function validate(){
-var userScore = document.getElementById('score').value;
-var userName = document.getElementById('name').value;
-if(isNaN(userScore) || userScore > 7 || userScore < 0 || !isNaN(userName)){  //check if score is not a number, is above 7, below 0, or if username is a #
-  alert("Your score must be between 0 and 7 AND your name cannot contain numbers or symbols!");  //if any of the conditions above are met (bad), then error message
-}else{
-  create_user();  // if none of the conditions are met, then the user is created
-}
+  var userScore = document.getElementById('score').value;
+  var userName = document.getElementById('name').value;
+  if(isNaN(userScore) || userScore > 7 || userScore < 0 || !isNaN(userName)){  //check if score is not a number, is above 7, below 0, or if username is a #
+    alert("Your score must be between 0 and 7 AND your name cannot contain numbers or symbols!");  //if any of the conditions above are met (bad), then error message
+  }else{
+    create_user();  // if none of the conditions are met, then the user is created
+  }
 }
 
 </script>
