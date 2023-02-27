@@ -1,0 +1,153 @@
+<style>
+  body {
+    background-color: #a4849b;
+  }
+  
+  </style>
+  
+  <title>-</title>
+  <style>
+  div.container {
+  background-color: #f1f7f1;
+  }
+  div.container p {
+  font-family: Georgia;
+  font-size: 50px;
+  font-style: normal;
+  text-align: center;
+  font-weight: normal;
+  text-decoration: underline;
+  text-transform: none;
+  color: #ffffff;
+  background-color: #3f2a3f;
+  }
+  div.container h5 {
+  text-align: center;
+  font-family: Georgia;
+  }
+  
+  </style>
+  <div class="container">
+  <p>User Feedback</p>
+  <h5>Help us improve our site by liking the features that worked well for you!</h5>
+
+
+  <html>
+  <head>
+    <style>
+      table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+      th, td {
+        padding: 5px;
+      }
+      th {
+        text-align: left;
+      }
+    </style>
+  </head>
+  <body>
+    <table id="feedbackTable">
+      <tr>
+        <th>Feature</th>
+        <th>Likes</th>
+        <th>Dislikes</th>
+        <th>Actions</th>
+      </tr>
+      <tr>
+        <td>Nutrition Wizard</td>
+        <td id="NA">0</td>
+        <td id="NADislikes">0</td>
+        <td>
+          <button onclick="likefeature('NALikes')">Like</button>
+          <button onclick="dislikefeature('NADislikes')">Dislike</button>
+        </td>
+      </tr>
+      <td>Fantastic Food Finder</td>
+        <td id="NA">0</td>
+        <td id="NADislikes">0</td>
+        <td>
+          <button onclick="likefeature('NALikes')">Like</button>
+          <button onclick="dislikefeature('NADislikes')">Dislike</button>
+        </td>
+      <tr>
+      <tr>
+        <td>Food for Your Mood</td>
+        <td id="ffymLikes">0</td>
+        <td id="ffymDislikes">0</td>
+        <td>
+          <button onclick="likefeature('ffymLikes')">Like</button>
+          <button onclick="dislikefeature('ffymDislikes')">Dislike</button>
+        </td>
+      </tr>
+      <tr>
+        <td>What's In Your Fridge</td>
+        <td id="wiyfLikes">0</td>
+        <td id="wiyfDislikes">0</td>
+        <td>
+          <button onclick="likefeature('wiyfLikes')">Like</button>
+          <button onclick="dislikefeature('wiyfDislikes')">Dislike</button>
+        </td>
+      </tr>
+    </table>
+    <script>
+      function likefeature(feature) {
+        let featureElement = document.getElementById(feature);
+        let currentLikes = parseInt(feautureElement.innerHTML);
+        featureElement.innerHTML = currentLikes + 1;
+      }
+
+      function dislikefeature(feature) {
+        let featureElement = document.getElementById(feature);
+        let currentDislikes = parseInt(featureElement.innerHTML);
+        featureElement.innerHTML = currentDislikes + 1;
+      }
+    </script>
+  </body>
+
+<!-- below is the code for leaving reviews -->
+
+<head>
+	<title>Review Page</title>
+</head>
+<body>
+	<h1>Reviews</h1>
+	<form>
+		<label for="review">Leave a review:</label><br>
+		<textarea id="review" name="review" rows="4" cols="50"></textarea><br>
+		<label for="name">Your name:</label>
+		<input type="text" id="name" name="name"><br>
+		<button type="button" onclick="addReview()">Submit</button>
+	</form>
+	<div id="past-reviews">
+		<h2>Past Reviews</h2>
+	</div>
+	<script>
+		let reviews = [];
+
+		function addReview() {
+			const review = document.getElementById("review").value;
+			const name = document.getElementById("name").value;
+			const reviewElement = document.createElement("p");
+			const reviewText = document.createTextNode(`${name}: ${review}`);
+			reviewElement.appendChild(reviewText);
+			document.body.appendChild(reviewElement);
+			reviews.push({name, review});
+			updatePastReviews();
+		}
+
+		function updatePastReviews() {
+			const pastReviewsElement = document.getElementById("past-reviews");
+			pastReviewsElement.innerHTML = "<h2>Past Reviews</h2>";
+			for (let i = 0; i < reviews.length; i++) {
+				const reviewElement = document.createElement("p");
+				const reviewText = document.createTextNode(`${reviews[i].name}: ${reviews[i].review}`);
+				reviewElement.appendChild(reviewText);
+				pastReviewsElement.appendChild(reviewElement);
+			}
+		}
+	</script>
+</body>
+
+</html>
