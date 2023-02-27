@@ -77,31 +77,43 @@ font-family: Georgia;
 </div>
 
 <script>
-function analyze() {
-  const input = document.getElementById("input").value;
-  const url = `https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data?ingr=${input}`;
-  const headers = {
-    "X-RapidAPI-Host": "edamam-edamam-nutrition-analysis.p.rapidapi.com",
-    "X-RapidAPI-Key": "2d79bbde22mshed34d34c65d8472p1365cejsn7594c6e54840"
-  };
-
-  fetch(url, {
-    method: "GET",
-    headers: headers
-  })
-    .then(response => response.json())
-    .then(data => {
-      const nutrients = data.totalNutrients;
-      const result = document.getElementById("result");
-      result.innerHTML = "";
-
-      for (let nutrient in nutrients) {
-        const nutrientDiv = document.createElement("div");
-        nutrientDiv.innerHTML = `${nutrients[nutrient].label}: ${nutrients[nutrient].quantity.toFixed(2)} ${nutrients[nutrient].unit}`;
-        result.appendChild(nutrientDiv);
-      }
-    });
-}
+  function analyze() {
+    const input = document.getElementById("input").value;
+    const url = `https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data?ingr=${input}`;
+    const headers = {
+      "X-RapidAPI-Host": "edamam-edamam-nutrition-analysis.p.rapidapi.com",
+      "X-RapidAPI-Key": "2d79bbde22mshed34d34c65d8472p1365cejsn7594c6e54840"
+    };
+  
+    fetch(url, {
+      method: "GET",
+      headers: headers
+    })
+      .then(response => response.json())
+      .then(data => {
+        const nutrients = data.totalNutrients;
+        const table = document.createElement("table"); // create table element
+        table.id = "result-table"; // set table id
+        const headersRow = table.insertRow(); // create headers row
+        headersRow.insertCell().innerHTML = "Nutrient";
+        headersRow.insertCell().innerHTML = "Calories";
+        headersRow.insertCell().innerHTML = "Carbs";
+        headersRow.insertCell().innerHTML = "Fat";
+  
+        for (let nutrient in nutrients) {
+          const nutrientRow = table.insertRow(); // create row for nutrient
+          nutrientRow.insertCell().innerHTML = nutrients[nutrient].label;
+          nutrientRow.insertCell().innerHTML = nutrients[nutrient].quantity.toFixed(2);
+          nutrientRow.insertCell().innerHTML = nutrients[nutrient].hasOwnProperty("CHOCDF") ? nutrients[nutrient].CHOCDF.toFixed(2) : "-";
+          nutrientRow.insertCell().innerHTML = nutrients[nutrient].hasOwnProperty("FAT") ? nutrients[nutrient].FAT.toFixed(2) : "-";
+        }
+  
+        const result = document.getElementById("result");
+        result.innerHTML = ""; // clear previous result
+        result.appendChild(table); // add table to result div
+      });
+  }
+  
 </script>
 
 </body>
