@@ -306,125 +306,131 @@ formElement.onsubmit = function submitAnswers(){
 </div>
 
 <script>
-// prepare HTML result container for new output
-const resultContainer = document.getElementById("result1");
-const url = "https://fresh4all.duckdns.org/api/scores"
-// const url = "http://172.26.198.166:8086/api/scores"
-const create_fetch = url + '/create';
-const read_fetch = url + '/';
 
-// load table on page entry
-read_users();
+  // prepare HTML result container for new output
+  const resultContainer = document.getElementById("result1");
+  // prepare URL's to allow easy switch from deployment and localhost
+  const url = "https://fresh4all.duckdns.org/api/scores"
+  // const url = "http://192.168.1.225:8087/api/scores"
+  const create_fetch = url + '/create';
+  const read_fetch = url + '/';
 
-// display table, data is fetched from fresh4all backend
-function read_users() {
-// prepare fetch options
-const read_options = {
-  method: 'GET', // *GET, POST, PUT, DELETE, etc.
-  mode: 'cors', // no-cors, *cors, same-origin
-  cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
-  credentials: 'omit', // include, *same-origin, omit
-  headers: {
-    'Content-Type': 'application/json'
-  },
-};
+  // Load users on page entry
+  read_users();
 
-// fetch the data from backend
-fetch(read_fetch, read_options)
-  // response is a RESTful "promise" on any successful fetch
-  .then(response => {
-    // check for response errors
-    if (response.status !== 200) {
-        const errorMsg = 'Database read error: ' + response.status;
-        console.log(errorMsg);
-        const tr = document.createElement("tr");
-        const td = document.createElement("td");
-        td.innerHTML = errorMsg;
-        tr.appendChild(td);
-        resultContainer.appendChild(tr);
-        return;
-    }
-    // valid response will have json data
-    response.json().then(data => {
-        console.log(data);
-        for (let row in data) {
-          console.log(data[row]);
-          add_row(data[row]);
+  // Display User Table, data is fetched from Backend Database
+  function read_users() {
+    // prepare fetch options
+    const read_options = {
+      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+      mode: 'cors', // no-cors, *cors, same-origin
+      cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: 'omit', // include, *same-origin, omit
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    };
+
+    // fetch the data from API
+    fetch(read_fetch, read_options)
+      // response is a RESTful "promise" on any successful fetch
+      .then(response => {
+        // check for response errors
+        if (response.status !== 200) {
+            const errorMsg = 'Database read error: ' + response.status;
+            console.log(errorMsg);
+            const tr = document.createElement("tr");
+            const td = document.createElement("td");
+            td.innerHTML = errorMsg;
+            tr.appendChild(td);
+            resultContainer.appendChild(tr);
+            return;
         }
+        // valid response will have json data
+        response.json().then(data => {
+            console.log(data);
+            for (let row in data) {
+              console.log(data[row]);
+              add_row(data[row]);
+            }
+        })
     })
-})
-// catch fetch errors (ie ACCESS to server blocked)
-.catch(err => {
-  console.error(err);
-  const tr = document.createElement("tr");
-  const td = document.createElement("td");
-  td.innerHTML = err;
-  tr.appendChild(td);
-  resultContainer.appendChild(tr);
-});
-}
-
-
-function create_user(){
-const body = {
-    score: document.getElementById("score").value,
-    name: document.getElementById("name").value,
-};
-const requestOptions = {
-    method: 'POST',
-    body: JSON.stringify(body),
-    headers: {
-        "content-type": "application/json",
-        'Authorization': 'Bearer my-token',
-    },
-};
-
-// create api
-// fetch api call to the database to create a new name+score
-fetch(create_fetch, requestOptions)
-  .then(response => {
-    // trap error response from Web API
-    if (response.status !== 200) {
-      const errorMsg = 'Database create error: ' + response.status;
-      console.log(errorMsg);
+    // catch fetch errors (ie ACCESS to server blocked)
+    .catch(err => {
+      console.error(err);
       const tr = document.createElement("tr");
       const td = document.createElement("td");
-      td.innerHTML = errorMsg;
+      td.innerHTML = err;
       tr.appendChild(td);
       resultContainer.appendChild(tr);
-      return;
-    }
-    // response contains valid result
-    response.json().then(data => {
-        console.log(data);
-        //add a table row for the new/created score+name
-        add_row(data);
+    });
+  }
+
+ 
+  function create_user(){
+    //Validate Password (must be 6-20 characters in len)
+    //verifyPassword("click");
+    const body = {
+        score: document.getElementById("score").value,
+        name: document.getElementById("name").value,
+    };
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        headers: {
+            "content-type": "application/json",
+            'Authorization': 'Bearer my-token',
+        },
+    };
+
+    // URL for Create API
+    // Fetch API call to the database to create a new user
+    fetch(create_fetch, requestOptions)
+      .then(response => {
+        // trap error response from Web API
+        if (response.status !== 200) {
+          const errorMsg = 'Database create error: ' + response.status;
+          console.log(errorMsg);
+          const tr = document.createElement("tr");
+          const td = document.createElement("td");
+          td.innerHTML = errorMsg;
+          tr.appendChild(td);
+          resultContainer.appendChild(tr);
+          return;
+        }
+        // response contains valid result
+        response.json().then(data => {
+            console.log(data);
+            //add a table row for the new/created userid
+            add_row(data);
+        })
     })
-})
-}
+  }
 
-function add_row(data) {
-  const tr = document.createElement("tr");
-  const name = document.createElement("td");
-    const score = document.createElement("td");
-// obtain name and score
-  score.innerHTML = data.score; 
-  name.innerHTML = data.name; 
-// add html to container
-  tr.appendChild(name);
-  tr.appendChild(score);
-  resultContainer.appendChild(tr);
-}
+  function add_row(data) {
+    const tr = document.createElement("tr");
+    const name = document.createElement("td");
+	  const score = document.createElement("td");
+  
 
+    // obtain data that is specific to the API
+    score.innerHTML = data.score; 
+    name.innerHTML = data.name; 
 
-// validate score and name
+    // add HTML to container
+	  tr.appendChild(name);
+    tr.appendChild(score);
+
+    resultContainer.appendChild(tr);
+  }
+  
 function validate(){
   var userScore = document.getElementById('score').value;
   var userName = document.getElementById('name').value;
-  if(isNaN(userScore) || userScore > 7 || userScore < 0 || !isNaN(userName)){  //check if score is not a number, is above 7, below 0, or if username is a #
-    alert("Your score must be between 0 and 7 AND your name cannot contain numbers or symbols!");  //if any of the conditions above are met (bad), then error message
+  if(isNaN(userScore) || userScore > 20192 || userScore < 0 || !isNaN(userName)){
+    alert("Please enter a valid score or name");
   }else{
-    create_user();  // if none of the conditions are met, then the user is created
+    create_user();
   }
 }
 
