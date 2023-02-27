@@ -370,8 +370,8 @@ formElement.onsubmit = function submitAnswers(){
 <script>
 // prepare HTML result container for new output
 const resultContainer = document.getElementById("result1");
-// const url = "http://fresh4all.duckdns.org/api/scores"
-const url = "http://172.26.198.166:8086/api/scores"
+const url = "https://fresh4all.duckdns.org/api/scores"
+// const url = "http://172.26.198.166:8086/api/scores"
 const create_fetch = url + '/create';
 const read_fetch = url + '/';
 
@@ -488,7 +488,7 @@ function validate(){
 var userScore = document.getElementById('score').value;
 var userName = document.getElementById('name').value;
 if(isNaN(userScore) || userScore > 7 || userScore < 0 || !isNaN(userName)){  //check if score is not a number, is above 7, below 0, or if username is a #
-  alert("Score MUST be between 0 and 7!");  //if any of the conditions above are met (bad), then error message
+  alert("Your score must be between 0 and 7 AND your name cannot contain numbers or symbols!");  //if any of the conditions above are met (bad), then error message
 }else{
   create_user();  // if none of the conditions are met, then the user is created
 }
