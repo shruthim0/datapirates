@@ -345,7 +345,7 @@ formElement.onsubmit = function submitAnswers(){
       <input type="text" name="name" id="name" required> <!--make sure name and score are required fields-->
   </label></p> 
       Score:
-      <input type="text" name="score" id="score" onchange="validate()" required> <!--validatescore function will run for this field-->
+      <input type="text" name="score" id="score" required> <!--validatescore function will run for this field-->
   <p>
       <button>❊ Add ❊</button>
   </p>
@@ -373,7 +373,7 @@ formElement.onsubmit = function submitAnswers(){
   const resultContainer = document.getElementById("result1");
   // prepare URL's to allow easy switch from deployment and localhost
   const url = "https://fresh4all.duckdns.org/api/scores"
-  // const url = "http://192.168.1.225:8087/api/scores"
+  // const url = "http://172.26.198.166:8086/api/scores"
   const create_fetch = url + '/create';
   const read_fetch = url + '/';
 
@@ -473,7 +473,6 @@ formElement.onsubmit = function submitAnswers(){
     const tr = document.createElement("tr");
     const name = document.createElement("td");
 	  const score = document.createElement("td");
-  
 
     // obtain data that is specific to the API
     score.innerHTML = data.score; 
@@ -485,16 +484,7 @@ formElement.onsubmit = function submitAnswers(){
 
     resultContainer.appendChild(tr);
   }
-  
-function validate(){
-  var userScore = document.getElementById('score').value;
-  var userName = document.getElementById('name').value;
-  if(isNaN(userScore) || userScore > 20192 || userScore < 0 || !isNaN(userName)){
-    alert("Please enter a valid score or name");
-  }else{
-    create_user();
-  }
-}
+
 
 </script>
 
