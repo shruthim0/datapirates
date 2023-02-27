@@ -92,25 +92,58 @@ font-family: Georgia;
       .then(response => response.json())
       .then(data => {
         const nutrients = data.totalNutrients;
-        const table = document.createElement("table"); // create table element
-        table.id = "result-table"; // set table id
-        const headersRow = table.insertRow(); // create headers row
-        headersRow.insertCell().innerHTML = "Nutrient";
-        headersRow.insertCell().innerHTML = "Calories";
-        headersRow.insertCell().innerHTML = "Carbs";
-        headersRow.insertCell().innerHTML = "Fat";
+        const result = document.getElementById("result");
+        result.innerHTML = "";
   
+        // Create the table element
+        const table = document.createElement("table");
+        table.classList.add("nutrient-table");
+  
+        // Create the table headers
+        const headers = ["ID", "Nutrient Name", "Calories", "Carbs", "Fat"];
+        const headerRow = document.createElement("tr");
+        for (let header of headers) {
+          const headerCell = document.createElement("th");
+          headerCell.textContent = header;
+          headerRow.appendChild(headerCell);
+        }
+        table.appendChild(headerRow);
+  
+        // Create a row for each nutrient
         for (let nutrient in nutrients) {
-          const nutrientRow = table.insertRow(); // create row for nutrient
-          nutrientRow.insertCell().innerHTML = nutrients[nutrient].label;
-          nutrientRow.insertCell().innerHTML = nutrients[nutrient].quantity.toFixed(2);
-          nutrientRow.insertCell().innerHTML = nutrients[nutrient].hasOwnProperty("CHOCDF") ? nutrients[nutrient].CHOCDF.toFixed(2) : "-";
-          nutrientRow.insertCell().innerHTML = nutrients[nutrient].hasOwnProperty("FAT") ? nutrients[nutrient].FAT.toFixed(2) : "-";
+          const nutrientRow = document.createElement("tr");
+  
+          // Add the nutrient ID to the first column
+          const idCell = document.createElement("td");
+          idCell.textContent = nutrient;
+          nutrientRow.appendChild(idCell);
+  
+          // Add the nutrient name to the second column
+          const nameCell = document.createElement("td");
+          nameCell.textContent = nutrients[nutrient].label;
+          nutrientRow.appendChild(nameCell);
+  
+          // Add the nutrient calories to the third column
+          const caloriesCell = document.createElement("td");
+          caloriesCell.textContent = nutrients[nutrient].calories.toFixed(2);
+          nutrientRow.appendChild(caloriesCell);
+  
+          // Add the nutrient carbs to the fourth column
+          const carbsCell = document.createElement("td");
+          carbsCell.textContent = nutrients[nutrient].carbs.toFixed(2);
+          nutrientRow.appendChild(carbsCell);
+  
+          // Add the nutrient fat to the fifth column
+          const fatCell = document.createElement("td");
+          fatCell.textContent = nutrients[nutrient].fat.toFixed(2);
+          nutrientRow.appendChild(fatCell);
+  
+          // Add the nutrient row to the table
+          table.appendChild(nutrientRow);
         }
   
-        const result = document.getElementById("result");
-        result.innerHTML = ""; // clear previous result
-        result.appendChild(table); // add table to result div
+        // Add the table to the result div
+        result.appendChild(table);
       });
   }
   
@@ -126,6 +159,126 @@ font-family: Georgia;
 
 
 
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Nutrition Wizard</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$("#nutritionbutton").submit(function(e) {
+				e.preventDefault(); // prevent the form from submitting normally
+				var ingredients = $("#ingredients").val(); // get the value of the ingredients textarea
+				var url = "https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data"; // API endpoint URL
+				var api_key = "afae82f074msh729fe72b128081fp1f40f4jsn36bd559b1ce4"; // API key
+				$.ajax({
+					url: url,
+					type: "POST",
+					headers: {
+						"X-RapidAPI-Host": "edamam-edamam-nutrition-analysis.p.rapidapi.com",
+						"X-RapidAPI-Key": api_key,
+						"Content-Type": "application/json"
+					},
+					data: JSON.stringify({
+						"ingr": ingredients.split(",")
+					}),
+					success: function(response) {
+						// add the nutrition data to the table.
+						$("#nutritionTable").append("<tr><td>" + response.calories + "</td><td>" + response.totalNutrients.FAT.quantity + " " + response.totalNutrients.FAT.unit + "</td><td>" + response.totalNutrients.CHOCDF.quantity + " " + response.totalNutrients.CHOCDF.unit + "</td><td>" + response.totalNutrients.PROCNT.quantity + " " + response.totalNutrients.PROCNT.unit + "</td></tr>");
+					},
+					error: function(xhr, status, error) {
+						console.log("Error: " + error);
+					}
+				});
+			});
+		});
+  </script>
+    <title>Food Item Table</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Food Item Table</h1>
+    <form onsubmit="addFoodItem(event)">
+      <label for="food-item">Food Item:</label>
+      <input type="text" id="food-item" name="food-item" required>
+      <label for="calories">Calories:</label>
+      <input type="text" id="calories" name="calories" required>
+      <input type="submit" value="Add Food Item">
+    </form>
+    <table id="food-table">
+      <thead>
+        <tr>
+          <th>Food Item</th>
+          <th>Calories</th>
+        </tr>
+      </thead>
+      <tbody id="food-table-body">
+      </tbody>
+    </table>
+    <script>
+      function addFoodItem(event) {
+        event.preventDefault();
+        const foodItemInput = document.getElementById("food-item");
+        const caloriesInput = document.getElementById("calories");
+        const foodTableBody = document.getElementById("food-table-body");
+        const foodItem = foodItemInput.value;
+        const calories = caloriesInput.value;
+        const row = document.createElement("tr");
+        const foodItemCell = document.createElement("td");
+        const caloriesCell = document.createElement("td");
+        foodItemCell.appendChild(document.createTextNode(foodItem));
+        caloriesCell.appendChild(document.createTextNode(calories));
+        row.appendChild(foodItemCell);
+        row.appendChild(caloriesCell);
+        foodTableBody.appendChild(row);
+        foodItemInput.value = "";
+        caloriesInput.value = "";
+      }
+    </script>
+  </body>
+</html>
 
 
 
