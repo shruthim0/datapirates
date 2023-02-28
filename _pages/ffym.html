@@ -198,7 +198,9 @@ formElement.onsubmit = function submitAnswers(){
 	
 	// for loop that ensures user answered questions 1-7, error if a question is missed
 	for(i = 1; i <= total;i++){            // i is initialized to 1, i will increment by 1 till i is less than or equal to 7 (total)
-		if(eval('q'+i) === null || eval('q'+i) === ''){    //makes strings based on what i is and evaluates those strings' values like variable names; if the question was not filled the value would be null(empty string)
+		if(eval('q'+i) === null || eval('q'+i) === ''){    
+      //makes strings based on what i is and evaluates those strings' values like variable names; 
+      // if the question was not filled the value would be null(empty string)
 			alert('You missed at least question '+ i);  //  if the value is empy then the error message will be displayed
 			return false;   //form will not be submitted if any value is empty
 		}
@@ -310,8 +312,8 @@ formElement.onsubmit = function submitAnswers(){
   // prepare HTML result container for new output
   const resultContainer = document.getElementById("result1");
   // prepare URL's to allow easy switch from deployment and localhost
-  // const url = "https://fresh4all.duckdns.org/api/scores/"
-  const url = "http://172.26.198.166:8086/api/scores"
+  const url = "https://fresh4all.duckdns.org/api/scores/"
+  // const url = "http://172.26.198.166:8086/api/scores"
   const create_fetch = url + '/create';
   const read_fetch = url + '/';
   const del_fetch = url + '/delete';
@@ -320,7 +322,7 @@ formElement.onsubmit = function submitAnswers(){
   read_users();
 
   // Display User Table, data is fetched from Backend Database
-  function read_users() {
+    function read_users() {
     // prepare fetch options
     const read_options = {
       method: 'GET', // *GET, POST, PUT, DELETE, etc.
@@ -331,6 +333,7 @@ formElement.onsubmit = function submitAnswers(){
         'Content-Type': 'application/json'
       },
     };
+
 
     // fetch the data from API
     fetch(read_fetch, read_options)
@@ -369,8 +372,7 @@ formElement.onsubmit = function submitAnswers(){
 
  
   function create_user(){
-    //Validate Password (must be 6-20 characters in len)
-    //verifyPassword("click");
+    //Creates user with inputted score
     const body = {
         score: document.getElementById("score").value,
         name: document.getElementById("name").value,
@@ -402,7 +404,7 @@ formElement.onsubmit = function submitAnswers(){
         // response contains valid result
         response.json().then(data => {
             console.log(data);
-            //add a table row for the new/created userid
+            //add a table row for the new/created score
             add_row(data);
         })
     })
@@ -425,8 +427,8 @@ formElement.onsubmit = function submitAnswers(){
     resultContainer.appendChild(tr);
   }
 
-
-function delete_record() {
+// delete method
+  function delete_record() {
   const delOptions = {
         method: 'DELETE',
         headers: {
@@ -435,33 +437,34 @@ function delete_record() {
         },
     };
 
-    // URL for DELETE API
-    // Fetch API call to the database to create a new user
+    // delete url
+    // do a fetch call to delete api
     fetch(del_fetch, delOptions)
       .then(response => {
-        // trap error response from Web API
-        if (response.status !== 200) {
-          window.location.reload();
+        // BUT trap error response from web api
+        if (response.status !== 200) {    // 200-->success
+          window.location.reload();      
           return;
         }
-        // response contains valid result
+        // response has valid result
         response.json().then(data => {
-            console.log(data);
+            console.log(data)
+            alert("All records have been DELETED, refresh the page for most updated version.");  //once delete works, user is prompted to refresh screen
         })
     })
   }
   
+// validate user name and score
 function validate(){
-  var userScore = document.getElementById('score').value;
-  var userName = document.getElementById('name').value;
-  if(isNaN(userScore) || userScore > 11 || userScore < 0 || !isNaN(userName)){
-    alert("Please enter a valid score or name 👹");
+  var userScore = document.getElementById('score').value;        // get user's input for score
+  var userName = document.getElementById('name').value;         // get user's input for name
+  if(isNaN(userScore) || userScore > 7 || userScore < 0 || !isNaN(userName)){    
+    //if score is greater than 7, less than 0, or if name has none letters
+    alert("Your score must be between 0 and 7 AND your name cannot contain numbers or symbols!");      // error+msg
   }else{
-    create_user();
+    create_user();   //if none of the conditions are met, user will be created
   }
 }
-
-
 </script>
 
 <div>
