@@ -208,7 +208,7 @@ function analyze() {
 					}),
 					success: function(response) {
 						// add the nutrition data to the table.
-						$("#food-table-body").append("<tr><td>" + response.ingredients[0].parsed[0].food + "</td><td>" + response.calories + "</td><td>" + response.totalNutrients.FAT.quantity + " " + response.totalNutrients.FAT.unit + "</td><td>" + response.totalNutrients.CHOCDF.quantity + " " + response.totalNutrients.CHOCDF.unit + "</td></tr>");
+						$("#nutritionTable").append("<tr><td>" + response.calories + "</td><td>" + response.totalNutrients.FAT.quantity + " " + response.totalNutrients.FAT.unit + "</td><td>" + response.totalNutrients.CHOCDF.quantity + " " + response.totalNutrients.CHOCDF.unit + "</td><td>" + response.totalNutrients.PROCNT.quantity + " " + response.totalNutrients.PROCNT.unit + "</td></tr>");
 					},
 					error: function(xhr, status, error) {
 						console.log("Error: " + error);
@@ -216,60 +216,83 @@ function analyze() {
 				});
 			});
 		});
-	</script>
-	<title>Food Item Table</title>
-	<style>
-		table {
-			border-collapse: collapse;
-			width: 100%;
-		}
-		th, td {
-			text-align: left;
-			padding: 8px;
-			border-bottom: 1px solid #ddd;
-		}
-		th {
-			background-color: #4CAF50;
-			color: white;
-		}
-		input[type="text"] {
-			width: 100%;
-			padding: 12px 20px;
-			margin: 8px 0;
-			display: inline-block;
-			border: 1px solid #ccc;
-			border-radius: 4px;
-			box-sizing: border-box;
-		}
-		input[type="submit"] {
-			background-color: #4CAF50;
-			color: white;
-			padding: 14px 20px;
-			margin: 8px 0;
-			border: none;
-			border-radius: 4px;
-			cursor: pointer;
-		}
-	</style>
-</head>
-<body>
-	<h1>Food Item Table</h1>
-	<form id="nutritionbutton">
-		<label for="ingredients">Ingredients:</label>
-		<textarea id="ingredients" name="ingredients" required></textarea>
-		<input type="submit" value="Get Nutrition Data">
-	</form>
-	<table id="food-table">
-		<thead>
-			<tr>
-				<th>Food Item</th>
-				<th>Calories</th>
-				<th>Fat</th>
-				<th>Carbs</th>
-			</tr>
-		</thead>
-		<tbody id
-
+  </script>
+    <title>Food Item Table</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        text-align: left;
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+      }
+      th {
+        background-color: #4CAF50;
+        color: white;
+      }
+      input[type="text"] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Food Item Table</h1>
+    <form onsubmit="addFoodItem(event)">
+      <label for="food-item">Food Item:</label>
+      <input type="text" id="food-item" name="food-item" required>
+      <label for="calories">Calories:</label>
+      <input type="text" id="calories" name="calories" required>
+      <input type="submit" value="Add Food Item">
+    </form>
+    <table id="food-table">
+      <thead>
+        <tr>
+          <th>Food Item</th>
+          <th>Calories</th>
+        </tr>
+      </thead>
+      <tbody id="food-table-body">
+      </tbody>
+    </table>
+    <script>
+      function addFoodItem(event) {
+        event.preventDefault();
+        const foodItemInput = document.getElementById("food-item");
+        const caloriesInput = document.getElementById("calories");
+        const foodTableBody = document.getElementById("food-table-body");
+        const foodItem = foodItemInput.value;
+        const calories = caloriesInput.value;
+        const row = document.createElement("tr");
+        const foodItemCell = document.createElement("td");
+        const caloriesCell = document.createElement("td");
+        foodItemCell.appendChild(document.createTextNode(foodItem));
+        caloriesCell.appendChild(document.createTextNode(calories));
+        row.appendChild(foodItemCell);
+        row.appendChild(caloriesCell);
+        foodTableBody.appendChild(row);
+        foodItemInput.value = "";
+        caloriesInput.value = "";
+      }
+    </script>
+  </body>
+</html>
 
 <iframe width="0" height="0" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/206903676&color=%23ff5500&auto_play=true&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
 
