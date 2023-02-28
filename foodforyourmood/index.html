@@ -467,6 +467,7 @@ formElement.onsubmit = function submitAnswers(){
         // response contains valid result
         response.json().then(data => {
             console.log(data);
+            const errorMsg = 'createdsuccesfully'
             //add a table row for the new/created score
             add_row(data);
             window.location.reload();
