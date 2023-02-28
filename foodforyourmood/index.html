@@ -461,6 +461,7 @@ formElement.onsubmit = function submitAnswers(){
           td.innerHTML = errorMsg;
           tr.appendChild(td);
           resultContainer.appendChild(tr);
+          window.location.reload();
           return;
         }
         // response contains valid result
@@ -468,6 +469,7 @@ formElement.onsubmit = function submitAnswers(){
             console.log(data);
             //add a table row for the new/created score
             add_row(data);
+            window.location.reload();
         })
     })
   }
