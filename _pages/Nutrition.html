@@ -10,7 +10,8 @@ search_exclude: true
 <head>
 <style>
 body {
-  background-color: #FFE5B4;
+  background-color: #FFCBA4
+;
 }
 
 div.container {
@@ -46,7 +47,7 @@ font-family: Georgia;
 }
 </style>
 
-<title>Nutrition Wizard</title>
+<title>Nutrition Genie</title>
 
 </head>
 <body>
@@ -54,7 +55,6 @@ font-family: Georgia;
 <p>＊˚*•̩̩͙✩•̩̩͙*˚Nutrition Wizard˚*•̩̩͙✩•̩̩͙*˚＊</p>
 <h5>“One cannot think well, love well, sleep well if one has not dined well.”</h5>
 <h5>🥗Enter any ingredients and get the nutrition facts🥗</h5>
-<h5>Don't forget to vote!</h5>
 </div>
 
 <br />
@@ -62,7 +62,7 @@ font-family: Georgia;
 
 <div>
 <form id="nutritionform">
-  <h4>Please enter the ingredients and their amount (make sure to separate with comma):</h4>
+  <h4>Please enter the ingredients and their amount (if more than one ingrediant, use "and" to seperate):</h4>
   <textarea id="input" rows="7" cols="125"></textarea>
 </form>
 
@@ -180,7 +180,7 @@ function analyze() {
     </style>
 </head>
 <body>
-<h1>Food Item Table</h1>
+<h1>Save Ingrediants</h1>
 <form onsubmit="addFoodItem(event)">
     <label for="food-item">Ingrediant:</label>
     <input type="text" id="food-item" name="food-item" required>
@@ -191,7 +191,7 @@ function analyze() {
 <table id="food-table">
     <thead>
     <tr>
-        <th>Food Item</th>
+        <th> Ingrediant</th>
         <th>Calories</th>
         <th></th>
     </tr>
