@@ -4,76 +4,94 @@ permalink: /Nutrition Wizard/
 title: Nutrition Wizard
 search_exclude: true
 ---
+<!DOCTYPE html>
 
 
 <html>
-<head>
-<style>
-body {
-  background-color: #FFCBA4
+  <head>
+    <title>Nutrition Genie</title>
+    
+    <!-- Style the webpage with CSS -->
+  <style>
+      /* Set the background color of the webpage */
+      body {
+        background-color: #FFCBA4;
+      }
 
-;
-}
+      /* Style the container div with a background color */
+      div.container {
+        background-color: #FF7F50;
+      }
 
-div.container {
-background-color:#FF7F50;
-}
-div.container p {
-font-family: Georgia;
-font-size: 50px;
-font-style: normal;
-text-align: center;
-font-weight: normal;
-text-decoration: underline;
-text-transform: none;
-color: #ffffff;
-background-color: #DC143C;
-}
-div.container h5 {
-text-align: center;
-font-family: Georgia;
-}
+      /* Style the text inside the container div */
+      div.container p {
+        font-family: Georgia;
+        font-size: 50px;
+        font-style: normal;
+        text-align: center;
+        font-weight: normal;
+        text-decoration: underline;
+        text-transform: none;
+        color: #ffffff;
+        background-color: #DC143C;
+      }
+      
+      /* Style the heading inside the container div */
+      div.container h5 {
+        text-align: center;
+        font-family: Georgia;
+      }
 
-.button {
-  background-color: #37FA90;
-  border: none;
-  color: white;
-  padding: 15px 64px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 35px;
-  margin: 115px 265px;
-  cursor: pointer;
-}
-</style>
+      /* Style the analyze button */
+      .button {
+        background-color: #37FA90;
+        border: none;
+        color: white;
+        padding: 15px 64px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 35px;
+        margin: 115px 265px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Create a container div to hold the page content -->
+    <div class="container">
+      <!-- Add a heading to the container div -->
+      <p>＊˚*•̩̩͙✩•̩̩͙*˚Nutrition Wizard˚*•̩̩͙✩•̩̩͙*˚＊</p>
+      
+      <!-- Add some text to the container div -->
+  <h5>“One cannot think well, love well, sleep well if one has not dined well.”</h5>
+      <h5>🥗Enter any ingredients and get the nutrition facts🥗</h5>
+    </div>
 
-<title>Nutrition Genie</title>
+    <!-- Create a form for the user to input their ingredients -->
+  <form id="nutritionform">
+      <!-- Add a heading to the form -->
+      <h4>Please enter the ingredients and their amount (if more than one ingredient, use "and" to separate):</h4>
+  <figure>
+  <img src="nutrition.jpg" alt="description of image">
+</figure>
 
-</head>
-<body>
-<div class="container">
-<p>＊˚*•̩̩͙✩•̩̩͙*˚Nutrition Wizard˚*•̩̩͙✩•̩̩͙*˚＊</p>
-<h5>“One cannot think well, love well, sleep well if one has not dined well.”</h5>
-<h5>🥗Enter any ingredients and get the nutrition facts🥗</h5>
-</div>
-
-<br />
-<br />
-
-<div>
-<form id="nutritionform">
-  <h4>Please enter the ingredients and their amount (if more than one ingrediant, use "and" to seperate):</h4>
+      
+      <!-- Create a text area for the user to input their ingredients -->
   <textarea id="input" rows="7" cols="125"></textarea>
-</form>
+    </form>
 
-<br />
+    <!-- Create a button for the user to analyze their ingredients -->
+  <button class="button" onclick="analyze()">⭒❃Analyze❃⭒</button>
 
-<button class="button" onclick="analyze()">⭒❃Analyze❃⭒</button>
-</div>
+    <!-- Create a div to display the results of the analysis -->
+  <div id="result"></div>
 
-<div id="result">
-</div>
+    <!-- Include a JavaScript file to handle the analysis of the ingredients -->
+  <script src="nutrition.js"></script>
+  </body>
+</html>
+
 
 
 <script>
@@ -140,66 +158,68 @@ function analyze() {
 
 
 <html>
-<head>
-    <title>Save your ingrediants</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+	<head>
+		<title>Save your ingrediants</title>
+		<style>
+			table {
+			    border-collapse: collapse;
+			    width: 100%;
+			}
 
-        th, td {
-            text-align: left;
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-        }
+			th, td {
+			    text-align: left;
+			    padding: 8px;
+			    border-bottom: 1px solid #ddd;
+			}
 
-        th {
-            background-color:  #DC143C;
-            color: white;
-        }
+			th {
+			    background-color:  #DC143C;
+			    color: white;
+			}
 
-        input[type="text"] {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+			input[type="text"] {
+			    width: 100%;
+			    padding: 12px 20px;
+			    margin: 8px 0;
+			    display: inline-block;
+			    border: 1px solid #ccc;
+			    border-radius: 4px;
+			    box-sizing: border-box;
+			}
 
-        input[type="submit"] {
-            background-color:  #DC143C;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-<h1>Save Ingrediants</h1>
-<form onsubmit="addFoodItem(event)">
-    <label for="food-item">Ingrediant:</label>
-    <input type="text" id="food-item" name="food-item" required>
-    <label for="calories">Calories:</label>
-    <input type="text" id="calories" name="calories" pattern="[0-9]+" required>
-    <input type="submit" value="Add Food Item">
-</form>
-<table id="food-table">
-    <thead>
-    <tr>
-        <th> Ingrediant</th>
-        <th>Calories</th>
-        <th></th>
-    </tr>
-    </thead>
-    <tbody id="food-table-body">
-    </tbody>
-</table>
+			input[type="submit"] {
+			    background-color:  #DC143C;
+			    color: white;
+			    padding: 14px 20px;
+			    margin: 8px 0;
+			    border: none;
+			    border-radius: 4px;
+			    cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Save Ingrediants</h1>
+		<form onsubmit="addFoodItem(event)">
+			<label for="food-item">Ingrediant:</label>
+			<input type="text" id="food-item" name="food-item" required />
+			<label for="calories">Calories:</label>
+			<input type="text" id="calories" name="calories" pattern="[0-9]+" required />
+			<input type="submit" value="Add Food Item" />
+		</form>
+		<table id="food-table">
+			<thead>
+				<tr>
+					<th>Ingrediant</th>
+					<th>Calories</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody id="food-table-body"></tbody>
+		</table>
+	</body>
+</html>
+
 <script>
     function addFoodItem(event) {
         event.preventDefault();
@@ -230,14 +250,6 @@ function analyze() {
     }
 </script>
 </body>
-</html>
-
-
-
-
-
-
-
 
 
 
