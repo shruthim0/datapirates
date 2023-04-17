@@ -494,15 +494,16 @@ font-family: Georgia;
         recipeLink.innerHTML = "Here's the recipe we think you should make!--->"+"<a href='" + randomLink + "'>" + randomLink + "</a>";
   }
 
-
-function clickCounter() {
-  if (typeof(Storage) !== "undefined") {
+// allows the user to show if the recipe matched the ingredients they chose 
+function clickCounter() { 
+  if (typeof(Storage) !== "undefined") { 
     if (localStorage.clickcount) {
-      localStorage.clickcount = Number(localStorage.clickcount)+1;
+      localStorage.clickcount = Number(localStorage.clickcount)+1; // local storage, so the number will remain the same even after the browser is reloaded
     } else {
       localStorage.clickcount = 1;
     }
-    document.getElementById("result").innerHTML = localStorage.clickcount + " users were satisfied with their recipe";
+    document.getElementById("result").innerHTML = localStorage.clickcount + " users were satisfied with their recipe"; 
+    // reveals the effectiveness of the program based on how many users found that the recipe matched the ingredients they chose
   } else {
     document.getElementById("result").innerHTML = "Sorry, your browser does not support web storage...";
   }
@@ -510,12 +511,23 @@ function clickCounter() {
 </script>
 </head>
 
-<div class="container">
+<div class="container"> <!--physical button-->
 <p><button onclick="clickCounter()" type="button">I liked my recipe</button></p>
 <div id="result"></div>
+
+
+
+
+
+
+
+
+
+
+
 </section>
-<h2>Have some ingredients that we don't? Suggest them here:</h2>
-<textarea rows="5" cols="50" placeholder="Type an ingredient..."></textarea>
+<h2>Have some ingredients that we don't? Suggest them here:</h2> <!--allows users to suggest other ingredients-->
+<textarea rows="5" cols="50" placeholder="Type an ingredient..."></textarea> 
 </div>
 
 
