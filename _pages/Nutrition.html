@@ -102,127 +102,185 @@ font-family: Georgia;
 
 
 <script>
-function getInputForAnalyse() { 
+function analyze() {
   const input = document.getElementById("input").value;
-    // this code passes the user input into the analyze function for further processing
- 
-  analyze(input);
-}
-// This function sends the user input to an external API to retrieve nutritional information and displays it in a table
-function analyze(input) {
-  if (input == "") {
-// If the user input is empty, it sends an alert message and asks the user to enter an ingredient
-    alert("Please enter an ingredient!");
-  }
-  else {
-  // If the user input is not empty, it builds the API endpoint URL with the user input as the ingredient to analyze
-    const url = `https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data?ingr=${input}`;
-    const headers = { 
-      // use of api to get the nutrition facts, api from rapidapi
-      "X-RapidAPI-Host": "edamam-edamam-nutrition-analysis.p.rapidapi.com",
-      "X-RapidAPI-Key": "afae82f074msh729fe72b128081fp1f40f4jsn36bd559b1ce4"
-    };
+  const url = `https://edamam-edamam-nutrition-analysis.p.rapidapi.com/api/nutrition-data?ingr=${input}`;
+  const headers = {
+    "X-RapidAPI-Host": "edamam-edamam-nutrition-analysis.p.rapidapi.com",
+    "X-RapidAPI-Key": "afae82f074msh729fe72b128081fp1f40f4jsn36bd559b1ce4"
+  };
 
-    // Save the ingredients in a table
-  // creates a table to display the ingredients and add the user input as a new row in the table
-    const ingredientsTable = document.getElementById("ingredients-table");
-    const row = ingredientsTable.insertRow();
-    const cell = row.insertCell();
-    cell.innerHTML = input;
-// fetch the nutritional information from the external API and display the results in a new table
+  // Save the ingredients in a table
+  const ingredientsTable = document.getElementById("ingredients-table");
+  const row = ingredientsTable.insertRow();
+  const cell = row.insertCell();
+  cell.innerHTML = input;
 
-    fetch(url, {
-      method: "GET",
-      headers: headers
-    })
-      .then(response => response.json())
-      .then(data => {
-        const nutrients = data.totalNutrients; // LIST CREATION USING THE DATA FROM THE API
-        ingredientsTableC(nutrients); // PROCEDURAL CALL WITH PROPER ARGUMENT
-      });
-  }
-}
-// This function takes the nutritional information retrieved from the API and displays it in a table
-
-function ingredientsTableC(nutrients) {  //  PARAMETER
-  if(nutrients == ""){ //SELECTION STATEMENT
-  
-    alert("Please check the name of ingredient. No information from server.");
-  }
-  else{ //SELECTION STATEMENT
-    const table = document.createElement("table");
-        table.innerHTML = `
-          <tr>
-            <th>Nutrient</th>
-            <th>Quantity</th>
-            <th>Unit</th>
-          </tr>
+  fetch(url, {
+    method: "GET",
+    headers: headers
+  })
+    .then(response => response.json())
+    .then(data => {
+      const nutrients = data.totalNutrients;
+      const table = document.createElement("table");
+      table.innerHTML = `
+        <tr>
+          <th>Nutrient</th>
+          <th>Quantity</th>
+          <th>Unit</th>
+        </tr>
+      `;
+      for (let nutrient in nutrients) {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${nutrients[nutrient].label}</td>
+          <td>${nutrients[nutrient].quantity.toFixed(2)}</td>
+          <td>${nutrients[nutrient].unit}</td>
         `;
-    // Iterate over each nutrient in the nutrients list and create a new row for each nutrient in the table
-    for (let nutrient in nutrients) { // ITERATION STATEMENT
-      var n = nutrients[nutrient];
-      const row = document.createElement("tr"); // EXTRACTING EACH ELEMENT OF THE LIST AND USING IT 
-      row.innerHTML = `
-              <td>${n.label}</td>
-              <td>${n.quantity.toFixed(2)}</td>
-              <td>${n.unit}</td>
-            `;
-      table.appendChild(row);
-    }
-    // Display the nutritional information table in the HTML page
-
-    const result = document.getElementById("result"); //SEQUENCING STATEMENTS 72-74
-    result.innerHTML = "";
-    result.appendChild(table);
-  }
-  
+        table.appendChild(row);
+      }
+      const result = document.getElementById("result");
+      result.innerHTML = "";
+      result.appendChild(table);
+    });
 }
+</script>
 
-let savednutritionfacts = []; //use of list, empty list, info stored in here than later showed in table
-// This function adds a new food item to the list of saved nutrition facts
+<!-- Add a new table element to hold the ingredients -->
+<table id="ingredients-table">
+  <tr>
+    <th>Ingredients</th>
+  </tr>
+</table>
 
-function addFood() {
-  let Ingredient = document.getElementById("Ingredient").value;
-  let calories = parseInt(document.getElementById("calories").value);
-  let fats = parseInt(document.getElementById("fats").value);
-  let proteins = parseInt(document.getElementById("proteins").value);
-  let carbs = parseInt(document.getElementById("carbs").value);
-  if(Ingredient ==""){
-    alert("Food name should be given.");
-  }
-  else{
-    let food = {
-      name: Ingredient,
-      calories: calories,
-      fats: fats,
-      proteins: proteins,
-      carbs: carbs
-    };
-   // Here I am adding the food object to the savednutritionfacts array
-    savednutritionfacts.push(food);
-  
-    let foodTable = document.getElementById("foodTable");
-    let row = foodTable.insertRow();
-    let nameCell = row.insertCell();
-    let caloriesCell = row.insertCell();
-    let fatsCell = row.insertCell();
-    let proteinsCell = row.insertCell();
-    let carbsCell = row.insertCell();
-    nameCell.innerHTML = food.name;
-    caloriesCell.innerHTML = food.calories;
-    fatsCell.innerHTML = food.fats;
-    proteinsCell.innerHTML = food.proteins;
-    carbsCell.innerHTML = food.carbs;
-  
-    document.getElementById("Ingredient").value = "";
-    document.getElementById("calories").value = "";
-    document.getElementById("fats").value = "";
-    document.getElementById("proteins").value = "";
-    document.getElementById("carbs").value = "";
-  }
-  
-}
 
+<!-- Add a div to hold the result of the analysis -->
+<div id="result"></div>
+
+
+
+
+
+
+<html>
+  <head>
+    <title>Nutrition Tracker</title>
+    <style>
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      th, td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: #CD5C5C;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Nutrition Tracker</h1>
+    <p>Save the ingredients here so you can always go back to its nutrition facts </p>
+    <form>
+      <label for="foodName">Food Name:</label>
+      <input type="text" id="foodName">
+      <br><br>
+      <label for="calories">Calories:</label>
+      <input type="number" id="calories">
+      <br><br>
+      <label for="fat">Fat:</label>
+      <input type="number" id="fat">
+      <br><br>
+      <label for="protein">Protein:</label>
+      <input type="number" id="protein">
+      <br><br>
+      <label for="carbs">Carbohydrates:</label>
+      <input type="number" id="carbs">
+      <br><br>
+      <input type="button" value="Add Food" onclick="addFood()">
+    </form>
+    <br>
+    <p>Saved Nutrition Facts:</p>
+    <table id="foodTable">
+      <thead>
+        <tr>
+          <th>Food Name</th>
+          <th>Calories</th>
+          <th>Fat</th>
+          <th>Protein</th>
+          <th>Carbs</th>
+        </tr>
+      </thead>
+      <tbody id="foodTableBody"></tbody>
+    </table>
+    <script>
+      let savednutritionfacts = [];
+
+        function addFood() {
+        let foodName = document.getElementById("foodName").value;
+        let calories = parseInt(document.getElementById("calories").value);
+        let fat = parseInt(document.getElementById("fat").value);
+        let protein = parseInt(document.getElementById("protein").value);
+        let carbs = parseInt(document.getElementById("carbs").value);
+
+        let food = {
+          name: foodName,
+          calories: calories,
+          fat: fat,
+          protein: protein,
+          carbs: carbs
+        };
+
+        savednutritionfacts.push(food);
+
+        let foodTableBody = document.getElementById("foodTableBody");
+        let row = foodTableBody.insertRow();
+        let nameCell = row.insertCell();
+        let caloriesCell = row.insertCell();
+        let fatCell = row.insertCell();
+        let proteinCell = row.insertCell();
+        let carbsCell = row.insertCell();
+        nameCell.innerHTML = food.name;
+        caloriesCell.innerHTML = food.calories;
+        fatCell.innerHTML = food.fat;
+        proteinCell.innerHTML = food.protein;
+        carbsCell.innerHTML = food.carbs;
+
+        document.getElementById("foodName").value = "";
+        document.getElementById("calories").value = "";
+        document.getElementById("fat").value = "";
+        document.getElementById("protein").value = "";
+        document.getElementById("carbs").value = "";
+      }
+  </script>
+  </body>
+</html>
+
+
+
+
+<html>
+  <head>
+    <title>Calorie Calculator</title>
+    <script src="calorie-calculator.js"></script>
+  </head>
+  <body>
+    <h1>Calorie Calculator</h1>
+    <form>
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age"><br><br>
+      <label for="calories">Calories consumed:</label>
+      <input type="number" id="calories" name="calories"><br><br>
+      <button type="button" onclick="calculateCalories()">Calculate</button>
+    </form>
+    <div id="output"></div>
+  </body>
+</html>
+
+<script>
 function calcCal() {
   // get user input
   // NOTE: recommended calories according to age info taken from a table provided by FDA
@@ -266,8 +324,5 @@ function calcCal() {
   // output result
   var output = document.getElementById("output");
   output.innerHTML = "Hi! Based on your age, you should consume " + recCal + " calories per day. You have consumed " + calCon + " calories today. You still need to consume " + remainCal + " calories to meet your daily requirement. STAY FIT AND STAY HEALTHY";
-  }
-  
-}
 
 </script>
